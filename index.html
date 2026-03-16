@@ -131,7 +131,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="logo-icon">⚡</div>
       <div>
         <div class="logo-txt">RAMOS AI 360</div>
-        <div class="logo-sub">v30 · AI TRADING</div>
+        <div class="logo-sub">v36 · AI TRADING</div>
       </div>
     </div>
     <div class="pill"><div class="dot"></div>LIVE</div>
@@ -158,7 +158,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <!-- STATS -->
   <div class="sgrid">
     <div class="scard"><div class="sico">🎯</div><div class="slabel">Win Rate</div><div class="sval gold" id="wr">—</div><div class="ssub" id="wl">— W / — L</div></div>
-    <div class="scard"><div class="sico">📊</div><div class="slabel">إجمالي الصفقات</div><div class="sval gold" id="tot">—</div><div class="ssub" id="open-c">— مفتوحة</div></div>
+    <div class="scard"><div class="sico">📊</div><div class="slabel">إجمالي الصفقات</div><div class="sval gold" id="tot">—</div><div class="ssub" id="open-c" style="color:var(--gold)">— مفتوحة ⏳</div></div>
     <div class="scard"><div class="sico">📈</div><div class="slabel">P&L الكلي</div><div class="sval" id="dpnl">—</div><div class="ssub" id="dtrd">منذ البداية</div></div>
     <div class="scard"><div class="sico">🛡️</div><div class="slabel">Max Drawdown</div><div class="sval r" id="mdd">—</div><div class="ssub">أقصى تراجع</div></div>
   </div>
@@ -206,7 +206,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div id="trades"><div class="loading"><div class="spin"></div><br>جاري التحميل...</div></div>
   </div>
 
-  <div class="foot">RAMOS AI 360 &nbsp;·&nbsp; 6 AI Experts &nbsp;·&nbsp; v30</div>
+  <div class="foot">RAMOS AI 360 &nbsp;·&nbsp; 6 AI Experts &nbsp;·&nbsp; v36</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -238,20 +238,32 @@ window.onload = function() {
 // ════════════════════════════════════════════
 function loadSheetData() {
   var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
-            '/gviz/tq?tqx=out:json&sheet=Sheet1';
+            '/gviz/tq?tqx=out:json';  // no sheet= param = reads first tab
 
   fetch(url)
-    .then(function(r) { return r.text(); })
+    .then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.text();
+    })
     .then(function(text) {
       // Google wraps JSON in: google.visualization.Query.setResponse({...})
-      var json = JSON.parse(text.replace(/^[^(]+\(/, '').replace(/\);?\s*$/, ''));
+      var clean = text.replace(/^[^(]+\(/, '').replace(/\);?\s*$/, '');
+      var json = JSON.parse(clean);
       var stats = parseSheetData(json);
+      if (stats.total === 0 && stats.open === 0) {
+        // Sheet connected but empty — show zero state
+        el('err-box').style.display = 'none';
+        el('lupd-time').textContent = new Date().toLocaleTimeString('ar-SA') + ' (الشيت فارغ)';
+      } else {
+        el('err-box').style.display = 'none';
+      }
       render(stats);
     })
     .catch(function(err) {
       console.warn('Sheet load failed:', err);
-      document.getElementById('err-box').style.display = 'block';
-      render(mockData()); // fallback
+      el('err-box').textContent = '⚠️ تعذّر قراءة الشيت — تحقق أن الشيت مشاركاً للعموم (Anyone with link)';
+      el('err-box').style.display = 'block';
+      render(emptyData());
     });
 }
 
@@ -287,8 +299,11 @@ function parseSheetData(json) {
     var result = String(getV(9) || '').trim().toUpperCase();
     var ttype  = String(getV(12) || 'Scalp').trim();
 
-    // Skip header row
-    if (sym === 'SYMBOL' || sym === 'Symbol' || sym === '') return;
+    // Skip header row or empty rows
+    if (!sym || sym === '' || sym === 'SYMBOL' || sym === 'Symbol' ||
+        sym === 'الأصل' || sym === 'Asset') return;
+    // Skip if entry price is 0 or missing (corrupt row)
+    if (!entry || entry <= 0) return;
 
     // Score
     var scoreNum = parseFloat(scoreS.split('/')[0]) || 0;
@@ -482,7 +497,7 @@ function buildTrades(trades) {
     var isOpen = t.res==='OPEN';
     var tClass = (t.type||'').indexOf('Swing')!==-1 ? 'bsw' : 'bsc';
     var rClass = isOpen ? 'bo' : isWin ? 'bw' : 'bls';
-    var rText  = t.res==='WIN_TP3' ? 'TP3 🎯' : t.res||'—';
+    var rText  = t.res==='WIN_TP3' ? 'TP3 🎯' : isOpen ? '⏳ مفتوحة' : t.res||'—';
     return '<div class="trow">' +
       '<div><div class="tasset">'+(t.asset||'—')+'</div>' +
       '<div class="ttime">'+(t.time||'—')+'</div></div>' +
@@ -541,7 +556,7 @@ function startCountdown() {
 // ════════════════════════════════════════════
 //  MOCK DATA (backup)
 // ════════════════════════════════════════════
-function mockData(){
+function emptyData(){
   return {
     current:0, wins:0, losses:0, winRate:0, aiConf:0,
     total:0, open:0, totalUSD:0, maxDrawdown:0, history:[0],
@@ -549,6 +564,8 @@ function mockData(){
     recentTrades:[]
   };
 }
+// Keep for backward compat
+function mockData(){ return emptyData(); }
 
 // ════════════════════════════════════════════
 //  HELPERS
