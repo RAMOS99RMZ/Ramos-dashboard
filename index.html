@@ -37,7 +37,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 1.8s infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.8);}}
 
-/* ACTIVE SIGNAL BANNER — جديد */
+/* ACTIVE SIGNAL BANNER */
 .sig-banner{
   background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(34,197,94,0.04));
   border:1px solid rgba(34,197,94,0.3);
@@ -84,7 +84,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .ssub{font-family:var(--ar);font-size:11px;font-weight:500;color:var(--dim);margin-top:4px;}
 .sico{position:absolute;top:14px;left:14px;font-size:20px;opacity:.12;}
 
-/* EXTRA STATS ROW — جديد */
+/* EXTRA STATS ROW */
 .xgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;}
 .xcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center;}
 .xlabel{font-family:var(--ar);font-size:10px;font-weight:600;color:var(--dim);margin-bottom:5px;}
@@ -114,7 +114,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .sectitle{font-family:var(--ar);font-size:12px;font-weight:700;letter-spacing:0.5px;color:var(--dim);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
 .sectitle::after{content:'';flex:1;height:1px;background:var(--border);}
 .chw{position:relative;height:160px;}
-
 
 /* LEADERBOARD */
 .lbrow{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);gap:10px;}
@@ -147,7 +146,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .bls{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3);}
 .bo{background:rgba(201,168,76,.10);color:var(--gold);border:1px solid var(--border);}
 
-/* LOCK ROW — يخفي تفاصيل الصفقات ويحث على الاشتراك */
+/* LOCK ROW */
 .lock-banner{
   display:block;
   background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));
@@ -176,7 +175,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <div class="gbg"></div>
 <div class="wrap">
 
-  <!-- HEADER -->
   <div class="hdr">
     <div class="logo">
       <div class="logo-icon">⚡</div>
@@ -188,10 +186,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="pill"><div class="dot"></div>LIVE</div>
   </div>
 
-  <!-- ERROR BOX -->
-  <div class="err-box" id="err-box">⚠️ تعذّر تحميل البيانات — يتم عرض بيانات تجريبية</div>
+  <div class="err-box" id="err-box">⚠️ تعذّر تحميل البيانات الحية من قاعدة البيانات</div>
 
-  <!-- ACTIVE SIGNAL BANNER -->
   <div class="sig-banner" id="sig-banner">
     <div class="sig-banner-inner">
       <div class="sig-live">
@@ -207,7 +203,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
   </div>
 
-  <!-- MILLION BAR -->
   <div class="mbox">
     <div class="mlabel">🏆 &nbsp; الهدف النهائي &nbsp; 🏆</div>
     <div class="mtitle">ROAD TO $1,000,000</div>
@@ -222,7 +217,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
   </div>
 
-  <!-- STATS -->
   <div class="sgrid">
     <div class="scard"><div class="sico">🎯</div><div class="slabel">نسبة الفوز</div><div class="sval gold" id="wr">—</div><div class="ssub" id="wl">— فوز / — خسارة</div></div>
     <div class="scard"><div class="sico">📊</div><div class="slabel">إجمالي الصفقات</div><div class="sval gold" id="tot">—</div><div class="ssub" id="open-c" style="color:var(--gold)">— مفتوحة ⏳</div></div>
@@ -230,7 +224,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="scard"><div class="sico">🛡️</div><div class="slabel">أقصى تراجع</div><div class="sval r" id="mdd">—</div><div class="ssub">Max Drawdown</div></div>
   </div>
 
-  <!-- EXTRA STATS — جديد -->
   <div class="xgrid">
     <div class="xcard">
       <div class="xlabel">⚡ Scalp</div>
@@ -249,7 +242,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
   </div>
 
-  <!-- LIVE TICKER -->
   <div class="tbox">
     <div class="ttitle">⚡ &nbsp; أسعار مباشرة · OKX</div>
     <div class="tgrid" id="ticker-top">
@@ -265,7 +257,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
   </div>
 
-  <!-- COUNTDOWN -->
   <div class="cbox">
     <div class="cico">⏱️</div>
     <div>
@@ -275,26 +266,21 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
   </div>
 
-  <!-- CHART -->
   <div class="sec">
     <div class="sectitle">📊 &nbsp; منحنى الأداء</div>
     <div class="loading" id="chart-load"><div class="spin"></div><br>جاري التحميل...</div>
     <div class="chw" id="chart-wrap" style="display:none"><canvas id="perf-chart"></canvas></div>
   </div>
 
-
-  <!-- LEADERBOARD -->
   <div class="sec">
     <div class="sectitle">🏅 &nbsp; أفضل الأصول</div>
     <div id="lb"><div class="loading"><div class="spin"></div><br>جاري التحميل...</div></div>
   </div>
 
-  <!-- TRADES — النتائج فقط بدون تفاصيل -->
   <div class="sec">
     <div class="sectitle">🕐 &nbsp; آخر الصفقات</div>
     <div class="trow thdr"><span>الأصل</span><span>النوع</span><span>الاتجاه</span><span>النتيجة</span></div>
     <div id="trades"><div class="loading"><div class="spin"></div><br>جاري التحميل...</div></div>
-    <!-- CTA للمشتركين -->
     <div class="lock-banner" id="lock-banner">
       <p>🔒 الإشارات الكاملة حصرياً — اشترك الآن</p>
       <a class="lock-btn" href="#" id="x-cta" target="_blank">
@@ -306,12 +292,18 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div class="foot">RAMOS AI 360 &nbsp;·&nbsp; <span>7 AI Experts + Groq</span> &nbsp;·&nbsp; v40</div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
 // ════════════════════════════════════════════
-//  CONFIG
+//  CONFIG & SUPABASE CREDENTIALS (SECURE)
 // ════════════════════════════════════════════
-var SHEET_ID  = '1_1fBcJYrfdEMGaEnTZ7p23G07UpYYNp4m6bqKIeZQ-w';
+var SUPABASE_URL = 'https://bbuumlribzxhahcdckml.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJidXVtbHJpYnp4aGFoY2Rja21sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNDIyNzMsImV4cCI6MjA5MzcxODI3M30.i0T4zBtn3etgCvOFPl0OBpGDjuWCAlhzSLt7HQ9330c';
+
+// إنشاء اتصال آمن للقرأة العامة عبر مفتاح Anon المقيد
+var _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 var GOAL      = 1000000;
 var X_LINK    = 'https://x.com/ramos99rmz';
 var ASSETS_TOP    = ['BTC','ETH','SOL','XRP'];
@@ -320,58 +312,64 @@ var ASSETS_ALL    = ['BTC','ETH','SOL','XRP','LINK','AVAX','DOGE'];
 var EMOJ      = {BTC:'₿',ETH:'Ξ',SOL:'◎',LINK:'🔗',AVAX:'🔺',DOGE:'🐶',XRP:'💧'};
 var perfChart = null;
 
-
 // ════════════════════════════════════════════
 //  INIT
 // ════════════════════════════════════════════
 window.onload = function() {
-  // ربط روابط التيليغرام
   var xLinks = document.querySelectorAll('#sig-x-link, #x-cta');
   xLinks.forEach(function(a){ a.href = X_LINK; });
 
   startCountdown();
   fetchPrices();
   setInterval(fetchPrices, 15000);
-  loadSheetData();
-  setInterval(loadSheetData, 300000);
+  
+  // تحميل البيانات لأول مرة ثم إعداد البث المباشر الفوري لقاعدة البيانات
+  loadSupabaseData();
+  subscribeToChanges();
 };
 
-
 // ════════════════════════════════════════════
-//  LOAD DATA FROM GOOGLE SHEET
+//  LOAD DATA FROM SUPABASE (READ-ONLY)
 // ════════════════════════════════════════════
-function loadSheetData() {
-  var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
-            '/gviz/tq?tqx=out:json';
-  fetch(url)
-    .then(function(r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.text();
-    })
-    .then(function(text) {
-      var clean = text.replace(/^[^(]+\(/, '').replace(/\);?\s*$/, '');
-      var json = JSON.parse(clean);
-      var stats = parseSheetData(json);
+function loadSupabaseData() {
+  // جلب الصفقات مرتبة تصاعدياً لضمان دقة عملية الحسابات المتراكمة للمنحنى المالي والدروداون
+  _supabase
+    .from('trades')
+    .select('*')
+    .order('created_at', { ascending: true })
+    .then(function(response) {
+      if (response.error) throw response.error;
+      
+      var stats = parseSupabaseData(response.data || []);
       el('err-box').style.display = 'none';
       render(stats);
     })
     .catch(function(err) {
-      console.warn('Sheet load failed:', err);
-      el('err-box').textContent = '⚠️ تعذّر قراءة الشيت — تأكد أن الشيت مشاركاً للعموم';
+      console.warn('Supabase data fetch failed:', err);
+      el('err-box').textContent = '⚠️ تعذّر اتصال الموقع بقاعدة البيانات الحية — يتم عرض شاشة خالية';
       el('err-box').style.display = 'block';
       render(emptyData());
     });
 }
 
 // ════════════════════════════════════════════
-//  PARSE SHEET DATA
-//  Columns: Date(0) Symbol(1) Dir(2) Price(3)
-//           Score(4) Size(5) SL(6) TP1(7) TP2(8)
-//           Result(9) ATR(10) TrailSL(11) Type(12) TP3(13)
+//  🌟 REALTIME STREAMING: الاستماع لأي صفقات جديدة أو تحديثات فورية
 // ════════════════════════════════════════════
-function parseSheetData(json) {
-  var rows = json.table && json.table.rows;
-  if (!rows || !rows.length) return emptyData();
+function subscribeToChanges() {
+  _supabase
+    .channel('public:trades')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'trades' }, function(payload) {
+      console.log('مستجدات حية في الصفقات!', payload);
+      loadSupabaseData();
+    })
+    .subscribe();
+}
+
+// ════════════════════════════════════════════
+//  PARSE SUPABASE TRADES DATA RELATIONALLY
+// ════════════════════════════════════════════
+function parseSupabaseData(trades) {
+  if (!trades || !trades.length) return emptyData();
 
   var total=0, wins=0, losses=0, open=0;
   var totalUSD=0, equity=0, peak=0, maxDD=0;
@@ -379,42 +377,37 @@ function parseSheetData(json) {
   var assetMap={};
   var recentTrades=[];
 
-  // Scalp / Swing win rates
   var scalpW=0, scalpL=0, swingW=0, swingL=0;
-
-  // Streak tracking
   var lastResults=[];
 
-  rows.forEach(function(row) {
-    var c = row.c || [];
-    var getV = function(i){ return c[i] && c[i].v !== null ? c[i].v : ''; };
+  trades.forEach(function(trade) {
+    // تعيين الحقول والمطابقة الحذرة مع المسميات لتجنب أي تعارض
+    var sym    = String(trade.symbol || '').trim();
+    var dir    = String(trade.direction || '').trim().toUpperCase();
+    var entry  = parseFloat(trade.entry_price) || 0;
+    var size   = parseFloat(trade.size) || 0;
+    var slVal  = parseFloat(trade.sl) || 0;
+    var tp2    = parseFloat(trade.tp2) || 0;
+    var result = String(trade.result || trade.status || '').trim().toUpperCase();
+    var ttype  = String(trade.type || trade.trade_type || 'Scalp').trim();
 
-    var sym    = String(getV(1)||'').trim();
-    var dir    = String(getV(2)||'').trim().toUpperCase();
-    var entry  = parseFloat(getV(3))||0;
-    var size   = parseFloat(getV(5))||0;
-    var slVal  = parseFloat(getV(6))||0;
-    var tp2    = parseFloat(getV(8))||0;
-    var result = String(getV(9)||'').trim().toUpperCase();
-    var ttype  = String(getV(12)||'Scalp').trim();
+    if (!sym || sym === '' || !entry || entry <= 0) return;
 
-    if (!sym || sym==='' || sym==='SYMBOL' || sym==='الأصل' || !entry || entry<=0) return;
-
-    var isScalpTrade = ttype.indexOf('Scalp')!==-1;
+    var isScalpTrade = ttype.indexOf('Scalp') !== -1;
     total++;
 
     var pnl = 0;
-    if (result==='WIN'||result==='WIN_TP3') {
+    if (result === 'WIN' || result === 'WIN_TP3') {
       wins++;
-      pnl = (dir==='LONG' ? (tp2-entry) : (entry-tp2)) * size;
+      pnl = (dir === 'LONG' ? (tp2 - entry) : (entry - tp2)) * size;
       if (isScalpTrade) scalpW++; else swingW++;
       lastResults.push('WIN');
-    } else if (result==='LOSS') {
+    } else if (result === 'LOSS') {
       losses++;
-      pnl = (dir==='LONG' ? (slVal-entry) : (entry-slVal)) * size;
+      pnl = (dir === 'LONG' ? (slVal - entry) : (entry - slVal)) * size;
       if (isScalpTrade) scalpL++; else swingL++;
       lastResults.push('LOSS');
-    } else if (result==='OPEN') {
+    } else if (result === 'OPEN') {
       open++;
       lastResults.push('OPEN');
     }
@@ -427,53 +420,41 @@ function parseSheetData(json) {
     if (dd > maxDD) maxDD = dd;
 
     if (sym) {
-      if (!assetMap[sym]) assetMap[sym]={sym:sym,wins:0,losses:0,pnl:0};
-      if (result==='WIN'||result==='WIN_TP3'){ assetMap[sym].wins++; assetMap[sym].pnl+=pnl; }
-      if (result==='LOSS')                   { assetMap[sym].losses++; assetMap[sym].pnl+=pnl; }
+      if (!assetMap[sym]) assetMap[sym] = {sym:sym, wins:0, losses:0, pnl:0};
+      if (result === 'WIN' || result === 'WIN_TP3') { assetMap[sym].wins++; assetMap[sym].pnl += pnl; }
+      if (result === 'LOSS')                        { assetMap[sym].losses++; assetMap[sym].pnl += pnl; }
     }
 
-    var timeStr='--:--';
+    var timeStr = '--:--';
     try {
-      var d=new Date(getV(0));
-      if (!isNaN(d)) timeStr=d.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
+      var d = new Date(trade.created_at);
+      if (!isNaN(d)) timeStr = d.toLocaleTimeString('ar-SA', {hour:'2-digit', minute:'2-digit'});
     } catch(e){}
 
     recentTrades.push({time:timeStr, asset:sym, dir:dir, type:ttype, res:result});
   });
 
-  var closed = wins+losses;
-  var winRate = closed>0 ? Math.round(wins/closed*100) : 0;
-  var scalpWR = (scalpW+scalpL)>0 ? Math.round(scalpW/(scalpW+scalpL)*100) : null;
-  var swingWR = (swingW+swingL)>0 ? Math.round(swingW/(swingW+swingL)*100) : null;
+  var closed = wins + losses;
+  var winRate = closed > 0 ? Math.round(wins / closed * 100) : 0;
+  var scalpWR = (scalpW + scalpL) > 0 ? Math.round(scalpW / (scalpW + scalpL) * 100) : null;
+  var swingWR = (swingW + swingL) > 0 ? Math.round(swingW / (swingW + swingL) * 100) : null;
 
-  // Streak
-  var streak=0, streakType='WIN';
-  for (var i=lastResults.length-1;i>=0;i--) {
-    if (lastResults[i]==='OPEN') continue;
-    if (i===lastResults.length-1||(lastResults[i]==='OPEN'&&streak===0)) {
-      streakType=lastResults[i]; streak=1;
-    } else if (lastResults[i]===streakType) {
-      streak++;
-    } else break;
-  }
-  // Recalculate properly
-  streak=0; streakType='WIN';
-  var closed_only=lastResults.filter(function(r){return r!=='OPEN';});
-  if (closed_only.length>0) {
-    streakType=closed_only[closed_only.length-1];
-    for (var j=closed_only.length-1;j>=0;j--) {
-      if (closed_only[j]===streakType) streak++;
+  // حساب متتالية الأرباح/الخسائر المباشرة
+  var streak = 0, streakType = 'WIN';
+  var closed_only = lastResults.filter(function(r){ return r !== 'OPEN'; });
+  if (closed_only.length > 0) {
+    streakType = closed_only[closed_only.length - 1];
+    for (var j = closed_only.length - 1; j >= 0; j--) {
+      if (closed_only[j] === streakType) streak++;
       else break;
     }
   }
 
-  // Active signal detection
-  var activeSignals=recentTrades.filter(function(t){return t.res==='OPEN';});
-
-  if (history.length>20) history=history.slice(-20);
+  var activeSignals = recentTrades.filter(function(t){ return t.res === 'OPEN'; });
+  if (history.length > 20) history = history.slice(-20);
 
   return {
-    current     : Math.max(Math.round(totalUSD),0),
+    current     : Math.max(Math.round(totalUSD), 0),
     wins        : wins,
     losses      : losses,
     winRate     : winRate,
@@ -486,8 +467,8 @@ function parseSheetData(json) {
     totalUSD    : totalUSD,
     maxDrawdown : Math.round(maxDD),
     history     : history,
-    assetStats  : Object.values(assetMap).sort(function(a,b){return b.pnl-a.pnl;}),
-    recentTrades: recentTrades.slice(-12).reverse(),
+    assetStats  : Object.values(assetMap).sort(function(a,b){ return b.pnl - a.pnl; }),
+    recentTrades: recentTrades.slice(-12).reverse(), // قلب الصفقات لتظهر الأحدث في الأعلى دائماً
     activeSignals: activeSignals
   };
 }
@@ -498,106 +479,104 @@ function parseSheetData(json) {
 function render(s) {
   if (!s) return;
 
-  var cur = s.current||0;
-  var pct = Math.min((cur/GOAL)*100,100);
-  var rem = Math.max(GOAL-cur,0);
+  var cur = s.current || 0;
+  var pct = Math.min((cur / GOAL) * 100, 100);
+  var rem = Math.max(GOAL - cur, 0);
 
   // Million bar
-  el('cur-pnl').textContent   = '$'+fmt(cur);
-  el('rem-amt').textContent   = '$'+fmt(rem);
-  el('ppct').textContent      = pct.toFixed(2)+'%';
+  el('cur-pnl').textContent   = '$' + fmt(cur);
+  el('rem-amt').textContent   = '$' + fmt(rem);
+  el('ppct').textContent      = pct.toFixed(2) + '%';
   el('lupd-time').textContent = new Date().toLocaleTimeString('ar-SA');
-  setTimeout(function(){ el('pfill').style.width=pct+'%'; },300);
+  setTimeout(function(){ el('pfill').style.width = pct + '%'; }, 300);
 
   // Stats
-  var wr=s.winRate||0;
-  el('wr').textContent    = wr+'%';
-  el('wr').className      = 'sval '+(wr>=50?'g':'r');
-  el('wl').textContent    = (s.wins||0)+' فوز / '+(s.losses||0)+' خسارة';
-  el('tot').textContent   = (s.total||0);
-  el('open-c').textContent= (s.open||0)+' مفتوحة ⏳';
+  var wr = s.winRate || 0;
+  el('wr').textContent    = wr + '%';
+  el('wr').className      = 'sval ' + (wr >= 50 ? 'g' : 'r');
+  el('wl').textContent    = (s.wins || 0) + ' فوز / ' + (s.losses || 0) + ' خسارة';
+  el('tot').textContent   = (s.total || 0);
+  el('open-c').textContent= (s.open || 0) + ' مفتوحة ⏳';
 
-  var tp=s.totalUSD||0;
-  el('dpnl').textContent  = (tp>=0?'+':'')+' $'+fmt(Math.abs(tp));
-  el('dpnl').className    = 'sval '+(tp>=0?'g':'r');
-  el('mdd').textContent   = '-$'+fmt(s.maxDrawdown||0);
+  var tp = s.totalUSD || 0;
+  el('dpnl').textContent  = (tp >= 0 ? '+' : '') + ' $' + fmt(Math.abs(tp));
+  el('dpnl').className    = 'sval ' + (tp >= 0 ? 'g' : 'r');
+  el('mdd').textContent   = '-$' + fmt(s.maxDrawdown || 0);
 
   // Extra stats
-  el('scalp-wr').textContent = s.scalpWR!==null ? s.scalpWR+'%' : '—';
-  el('scalp-wr').style.color = s.scalpWR>=50?'var(--green)':s.scalpWR!==null?'var(--red)':'var(--gold)';
-  el('swing-wr').textContent = s.swingWR!==null ? s.swingWR+'%' : '—';
-  el('swing-wr').style.color = s.swingWR>=50?'var(--green)':s.swingWR!==null?'var(--red)':'var(--gold)';
+  el('scalp-wr').textContent = s.scalpWR !== null ? s.scalpWR + '%' : '—';
+  el('scalp-wr').style.color = s.scalpWR >= 50 ? 'var(--green)' : s.scalpWR !== null ? 'var(--red)' : 'var(--gold)';
+  el('swing-wr').textContent = s.swingWR !== null ? s.swingWR + '%' : '—';
+  el('swing-wr').style.color = s.swingWR >= 50 ? 'var(--green)' : s.swingWR !== null ? 'var(--red)' : 'var(--gold)';
 
-  if (s.streak>0) {
+  if (s.streak > 0) {
     el('streak').textContent = s.streak;
-    el('streak').style.color = s.streakType==='WIN'?'var(--green)':'var(--red)';
-    el('streak-lbl').textContent = s.streakType==='WIN'?'انتصار متتالي':'خسارة متتالية';
+    el('streak').style.color = s.streakType === 'WIN' ? 'var(--green)' : 'var(--red)';
+    el('streak-lbl').textContent = s.streakType === 'WIN' ? 'انتصار متتالي' : 'خسارة متتالية';
   }
 
   // Active signal banner
-  renderSignalBanner(s.activeSignals||[]);
+  renderSignalBanner(s.activeSignals || []);
 
-  buildChart(s.history||[0]);
-  buildLB(s.assetStats||[]);
-  buildTrades(s.recentTrades||[]);
-
-  // lock-banner always visible
+  buildChart(s.history || [0]);
+  buildLB(s.assetStats || []);
+  buildTrades(s.recentTrades || []);
 }
 
 // ════════════════════════════════════════════
 //  SIGNAL BANNER
 // ════════════════════════════════════════════
 function renderSignalBanner(signals) {
-  if (!signals||!signals.length) {
-    el('sig-banner').style.display='none';
+  if (!signals || !signals.length) {
+    el('sig-banner').style.display = 'none';
     return;
   }
-  var s=signals[0];
-  el('sig-banner').style.display='block';
-  el('sig-label').textContent='صفقة نشطة: '+s.asset;
+  var s = signals[0];
+  el('sig-banner').style.display = 'block';
+  el('sig-label').textContent = 'صفقة نشطة: ' + s.asset;
 
-  var isLong=s.dir==='LONG';
-  var typeLabel=s.type.indexOf('Swing')!==-1?'Swing':'Scalp';
-  el('sig-details').innerHTML=
-    '<span class="sig-chip '+(isLong?'long':'short')+'">'+(isLong?'▲ LONG':'▼ SHORT')+'</span>'+
-    '<span class="sig-chip">'+typeLabel+'</span>';
+  var isLong = s.dir === 'LONG';
+  var typeLabel = s.type.indexOf('Swing') !== -1 ? 'Swing' : 'Scalp';
+  el('sig-details').innerHTML =
+    '<span class="sig-chip ' + (isLong ? 'long' : 'short') + '">' + (isLong ? '▲ LONG' : '▼ SHORT') + '</span>' +
+    '<span class="sig-chip">' + typeLabel + '</span>';
 }
 
 // ════════════════════════════════════════════
 //  CHART
 // ════════════════════════════════════════════
 function buildChart(hist) {
-  el('chart-load').style.display='none';
-  el('chart-wrap').style.display='block';
-  var canvas=el('perf-chart');
-  var ctx=canvas.getContext('2d');
+  el('chart-load').style.display = 'none';
+  el('chart-wrap').style.display = 'block';
+  var canvas = el('perf-chart');
+  var ctx = canvas.getContext('2d');
   if (perfChart) perfChart.destroy();
-  var grad=ctx.createLinearGradient(0,0,0,160);
-  grad.addColorStop(0,'rgba(201,168,76,0.3)');
-  grad.addColorStop(1,'rgba(201,168,76,0)');
-  perfChart=new Chart(canvas,{
-    type:'line',
-    data:{
-      labels:hist.map(function(_,i){return 'S'+(i+1);}),
-      datasets:[{
-        data:hist,borderColor:'#C9A84C',borderWidth:2,
-        pointBackgroundColor:'#C9A84C',pointRadius:3,
-        fill:true,backgroundColor:grad,tension:0.45
+  var grad = ctx.createLinearGradient(0, 0, 0, 160);
+  grad.addColorStop(0, 'rgba(201,168,76,0.3)');
+  grad.addColorStop(1, 'rgba(201,168,76,0)');
+  perfChart = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: hist.map(function(_, i){ return 'S' + (i + 1); }),
+      datasets: [{
+        data: hist, borderColor: '#C9A84C', borderWidth: 2,
+        pointBackgroundColor: '#C9A84C', pointRadius: 3,
+        fill: true, backgroundColor: grad, tension: 0.45
       }]
     },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{display:false},
-        tooltip:{
-          backgroundColor:'#111',borderColor:'rgba(201,168,76,.3)',borderWidth:1,
-          titleColor:'#C9A84C',bodyColor:'#fff',
-          callbacks:{label:function(c){return ' $'+fmt(c.parsed.y);}}
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#111', borderColor: 'rgba(201,168,76,.3)', borderWidth: 1,
+          titleColor: '#C9A84C', bodyColor: '#fff',
+          callbacks: { label: function(c){ return ' $' + fmt(c.parsed.y); } }
         }
       },
-      scales:{
-        x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#444',font:{family:'IBM Plex Mono',size:10}}},
-        y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#444',font:{family:'IBM Plex Mono',size:10},callback:function(v){return '$'+fmt(v);}}}
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#444', font: { family: 'IBM Plex Mono', size: 10 } } },
+        y: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#444', font: { family: 'IBM Plex Mono', size: 10 }, callback: function(v){ return '$' + fmt(v); } } }
       }
     }
   });
@@ -608,48 +587,48 @@ function buildChart(hist) {
 // ════════════════════════════════════════════
 function buildLB(data) {
   if (!data.length) {
-    data=ASSETS_ALL.map(function(a){return{sym:a,wins:0,losses:0,pnl:0};});
+    data = ASSETS_ALL.map(function(a){ return {sym:a, wins:0, losses:0, pnl:0}; });
   }
-  data.sort(function(a,b){return b.pnl-a.pnl;});
-  var maxP=Math.max.apply(null,data.map(function(x){return Math.abs(x.pnl);}))||1;
-  el('lb').innerHTML=data.map(function(a,i){
-    var pos=a.pnl>=0;
-    var tot=(a.wins||0)+(a.losses||0);
-    var wr=tot>0?Math.round(a.wins/tot*100):0;
-    var bw=Math.round(Math.abs(a.pnl)/maxP*100);
-    return '<div class="lbrow">'+
-      '<div class="lbrank'+(i===0?' top':'')+'">'+( i+1)+'</div>'+
-      '<div class="lbcoin">'+(EMOJ[a.sym]||'💱')+'</div>'+
-      '<div class="lbname"><div class="lbsym">'+a.sym+'</div>'+
-      '<div class="lbstat">'+a.wins+' فوز / '+a.losses+' خسارة · '+wr+'%</div></div>'+
-      '<div class="lbpnl"><div class="lbpct '+(pos?'pos':'neg')+'">'+(pos?'+':'')+' $'+fmt(Math.abs(a.pnl))+'</div>'+
-      '<div class="lbbar"><div class="lbbfill '+(pos?'pos':'neg')+'" style="width:'+bw+'%"></div></div></div>'+
+  data.sort(function(a, b){ return b.pnl - a.pnl; });
+  var maxP = Math.max.apply(null, data.map(function(x){ return Math.abs(x.pnl); })) || 1;
+  el('lb').innerHTML = data.map(function(a, i){
+    var pos = a.pnl >= 0;
+    var tot = (a.wins || 0) + (a.losses || 0);
+    var wr = tot > 0 ? Math.round(a.wins / tot * 100) : 0;
+    var bw = Math.round(Math.abs(a.pnl) / maxP * 100);
+    return '<div class="lbrow">' +
+      '<div class="lbrank' + (i === 0 ? ' top' : '') + '">' + (i + 1) + '</div>' +
+      '<div class="lbcoin">' + (EMOJ[a.sym] || '💱') + '</div>' +
+      '<div class="lbname"><div class="lbsym">' + a.sym + '</div>' +
+      '<div class="lbstat">' + a.wins + ' فوز / ' + a.losses + ' خسارة · ' + wr + '%</div></div>' +
+      '<div class="lbpnl"><div class="lbpct ' + (pos ? 'pos' : 'neg') + '">' + (pos ? '+' : '') + ' $' + fmt(Math.abs(a.pnl)) + '</div>' +
+      '<div class="lbbar"><div class="lbbfill ' + (pos ? 'pos' : 'neg') + '" style="width:' + bw + '%"></div></div></div>' +
       '</div>';
   }).join('');
 }
 
 // ════════════════════════════════════════════
-//  TRADES TABLE — نتائج فقط بدون أسعار
+//  TRADES TABLE
 // ════════════════════════════════════════════
 function buildTrades(trades) {
   if (!trades.length) {
-    el('trades').innerHTML='<div style="text-align:center;padding:20px;color:var(--dim);font-family:var(--ar);font-size:12px;font-weight:600">لا توجد صفقات بعد</div>';
+    el('trades').innerHTML = '<div style="text-align:center;padding:20px;color:var(--dim);font-family:var(--ar);font-size:12px;font-weight:600">لا توجد صفقات مسجلة بعد في قاعدة البيانات</div>';
     return;
   }
-  el('trades').innerHTML=trades.slice(0,12).map(function(t){
-    var isLong=t.dir==='LONG';
-    var isWin=t.res==='WIN'||t.res==='WIN_TP3';
-    var isOpen=t.res==='OPEN';
-    var tClass=(t.type||'').indexOf('Swing')!==-1?'bsw':'bsc';
-    var rClass=isOpen?'bo':isWin?'bw':'bls';
-    var rText=t.res==='WIN_TP3'?'TP3 🎯':isOpen?'⏳ نشطة':isWin?'✅ ربح':'❌ خسارة';
-    var typeShort=(t.type||'').indexOf('Swing')!==-1?'Swing':'Scalp';
-    return '<div class="trow">'+
-      '<div><div class="tasset">'+(t.asset||'—')+'</div>'+
-      '<div class="ttime">'+(t.time||'—')+'</div></div>'+
-      '<span class="badge '+tClass+'">'+typeShort+'</span>'+
-      '<span class="badge '+(isLong?'bl':'bs')+'">'+(isLong?'▲ LONG':'▼ SHORT')+'</span>'+
-      '<span class="badge '+rClass+'">'+rText+'</span>'+
+  el('trades').innerHTML = trades.slice(0, 12).map(function(t){
+    var isLong = t.dir === 'LONG';
+    var isWin = t.res === 'WIN' || t.res === 'WIN_TP3';
+    var isOpen = t.res === 'OPEN';
+    var tClass = (t.type || '').indexOf('Swing') !== -1 ? 'bsw' : 'bsc';
+    var rClass = isOpen ? 'bo' : isWin ? 'bw' : 'bls';
+    var rText = t.res === 'WIN_TP3' ? 'TP3 🎯' : isOpen ? '⏳ نشطة' : isWin ? '✅ ربح' : '❌ خسارة';
+    var typeShort = (t.type || '').indexOf('Swing') !== -1 ? 'Swing' : 'Scalp';
+    return '<div class="trow">' +
+      '<div><div class="tasset">' + (t.asset || '—') + '</div>' +
+      '<div class="ttime">' + (t.time || '—') + '</div></div>' +
+      '<span class="badge ' + tClass + '">' + typeShort + '</span>' +
+      '<span class="badge ' + (isLong ? 'bl' : 'bs') + '">' + (isLong ? '▲ LONG' : '▼ SHORT') + '</span>' +
+      '<span class="badge ' + rClass + '">' + rText + '</span>' +
       '</div>';
   }).join('');
 }
@@ -661,31 +640,30 @@ function fetchPrices() {
   var topSyms   = ['BTC-USDT-SWAP','ETH-USDT-SWAP','SOL-USDT-SWAP','XRP-USDT-SWAP'];
   var botSyms   = ['LINK-USDT-SWAP','AVAX-USDT-SWAP','DOGE-USDT-SWAP'];
   var allSyms   = topSyms.concat(botSyms);
-  var allNames  = ASSETS_TOP.concat(ASSETS_BOTTOM);
 
-  var proms=allSyms.map(function(s){
-    return fetch('https://www.okx.com/api/v5/market/ticker?instId='+s)
-      .then(function(r){return r.json();})
-      .catch(function(){return null;});
+  var proms = allSyms.map(function(s){
+    return fetch('https://www.okx.com/api/v5/market/ticker?instId=' + s)
+      .then(function(r){ return r.json(); })
+      .catch(function(){ return null; });
   });
 
   Promise.all(proms).then(function(res){
-    function makeItem(r,name) {
-      if (!r||!r.data||!r.data[0]) return '<div class="titem"><div class="tsym">'+name+'</div><div class="tprice" style="color:var(--dim)">—</div></div>';
-      var d=r.data[0];
-      var p=parseFloat(d.last);
-      var chg=((p-parseFloat(d.open24h))/parseFloat(d.open24h)*100);
-      var pf=p>=10000?p.toFixed(1):p>=1?p.toFixed(3):p.toFixed(5);
-      return '<div class="titem">'+
-        '<div class="tsym">'+name+'</div>'+
-        '<div class="tprice">'+pf+'</div>'+
-        '<div class="tchg '+(chg>=0?'up':'dn')+'">'+(chg>=0?'+':'')+chg.toFixed(2)+'%</div>'+
+    function makeItem(r, name) {
+      if (!r || !r.data || !r.data[0]) return '<div class="titem"><div class="tsym">' + name + '</div><div class="tprice" style="color:var(--dim)">—</div></div>';
+      var d = r.data[0];
+      var p = parseFloat(d.last);
+      var chg = ((p - parseFloat(d.open24h)) / parseFloat(d.open24h) * 100);
+      var pf = p >= 10000 ? p.toFixed(1) : p >= 1 ? p.toFixed(3) : p.toFixed(5);
+      return '<div class="titem">' +
+        '<div class="tsym">' + name + '</div>' +
+        '<div class="tprice">' + pf + '</div>' +
+        '<div class="tchg ' + (chg >= 0 ? 'up' : 'dn') + '">' + (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%</div>' +
         '</div>';
     }
-    var topHtml=res.slice(0,4).map(function(r,i){return makeItem(r,ASSETS_TOP[i]);}).join('');
-    var botHtml=res.slice(4).map(function(r,i){return makeItem(r,ASSETS_BOTTOM[i]);}).join('');
-    el('ticker-top').innerHTML=topHtml;
-    el('ticker-bottom').innerHTML=botHtml;
+    var topHtml = res.slice(0, 4).map(function(r, i){ return makeItem(r, ASSETS_TOP[i]); }).join('');
+    var botHtml = res.slice(4).map(function(r, i){ return makeItem(r, ASSETS_BOTTOM[i]); }).join('');
+    el('ticker-top').innerHTML = topHtml;
+    el('ticker-bottom').innerHTML = botHtml;
   });
 }
 
@@ -694,35 +672,35 @@ function fetchPrices() {
 // ════════════════════════════════════════════
 function startCountdown() {
   function tick(){
-    var now=new Date(),next=new Date(now);
-    next.setMinutes(0,0,0);next.setHours(next.getHours()+1);
-    var d=next-now;
-    el('cdn').textContent=
-      String(Math.floor(d/3600000)).padStart(2,'0')+':'+
-      String(Math.floor((d%3600000)/60000)).padStart(2,'0')+':'+
-      String(Math.floor((d%60000)/1000)).padStart(2,'0');
+    var now = new Date(), next = new Date(now);
+    next.setMinutes(0, 0, 0); next.setHours(next.getHours() + 1);
+    var d = next - now;
+    el('cdn').textContent =
+      String(Math.floor(d / 3600000)).padStart(2, '0') + ':' +
+      String(Math.floor((d % 3600000) / 60000)).padStart(2, '0') + ':' +
+      String(Math.floor((d % 60000) / 1000)).padStart(2, '0');
   }
-  tick();setInterval(tick,1000);
+  tick(); setInterval(tick, 1000);
 }
 
 // ════════════════════════════════════════════
 //  HELPERS
 // ════════════════════════════════════════════
-function el(id){return document.getElementById(id);}
+function el(id){ return document.getElementById(id); }
 function fmt(n){
-  n=+n;
+  n = +n;
   if (isNaN(n)) return '0';
-  if (n>=1000000) return (n/1000000).toFixed(2)+'M';
-  if (n>=1000)    return (n/1000).toFixed(1)+'K';
+  if (n >= 1000000) return (n / 1000000).toFixed(2) + 'M';
+  if (n >= 1000)    return (n / 1000).toFixed(1) + 'K';
   return n.toFixed(0);
 }
 function emptyData(){
   return {
-    current:0,wins:0,losses:0,winRate:0,scalpWR:null,swingWR:null,
-    streak:0,streakType:'WIN',total:0,open:0,totalUSD:0,maxDrawdown:0,
+    current:0, wins:0, losses:0, winRate:0, scalpWR:null, swingWR:null,
+    streak:0, streakType:'WIN', total:0, open:0, totalUSD:0, maxDrawdown:0,
     history:[0],
-    assetStats:ASSETS_ALL.map(function(a){return{sym:a,wins:0,losses:0,pnl:0};}),
-    recentTrades:[],activeSignals:[]
+    assetStats:ASSETS_ALL.map(function(a){ return {sym:a, wins:0, losses:0, pnl:0}; }),
+    recentTrades:[], activeSignals:[]
   };
 }
 </script>
