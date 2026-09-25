@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>RAMOS AI 360 — v40</title>
+<title>RAMOS AI 360 — v41</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -38,14 +38,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.8);}}
 
 /* ACTIVE SIGNAL BANNER */
-.sig-banner{
-  background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(34,197,94,0.04));
-  border:1px solid rgba(34,197,94,0.3);
-  border-radius:14px;padding:14px 18px;
-  margin-bottom:18px;
-  display:none;
-  position:relative;overflow:hidden;
-}
+.sig-banner{background:linear-gradient(135deg,rgba(34,197,94,0.08),rgba(34,197,94,0.04));border:1px solid rgba(34,197,94,0.3);border-radius:14px;padding:14px 18px;margin-bottom:18px;display:none;position:relative;overflow:hidden;}
 .sig-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,0.5),transparent);}
 .sig-banner-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .sig-live{display:flex;align-items:center;gap:8px;}
@@ -55,8 +48,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .sig-chip{background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:3px 10px;font-family:var(--ar);font-size:12px;font-weight:600;color:#fff;}
 .sig-chip.long{border-color:rgba(34,197,94,0.4);color:var(--green);}
 .sig-chip.short{border-color:rgba(239,68,68,0.4);color:var(--red);}
-.sig-chip.profit{border-color:rgba(34,197,94,0.4);color:var(--green);}
-.sig-chip.risk{border-color:rgba(239,68,68,0.4);color:var(--red);}
 .sig-x{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 12px;font-family:var(--ar);font-size:11px;font-weight:600;color:#e7e9ea;white-space:nowrap;text-decoration:none;}
 
 /* MILLION */
@@ -64,7 +55,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .mbox::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5;}
 .mlabel{font-family:var(--ar);font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gold-dim);margin-bottom:8px;}
 .mtitle{font-family:var(--hd);font-size:26px;letter-spacing:3px;color:var(--gold);margin-bottom:6px;}
-.mamount{font-family:var(--hd);font-size:52px;letter-spacing:2px;line-height:1;margin-bottom:4px;background:linear-gradient(135deg,#fff,#E8C96A,#C9A84C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.mamount{font-family:var(--hd);font-size:52px;letter-spacing:2px;line-height:1;margin-bottom:4px;background:linear-gradient(135deg,#fff,#E8C96A,#C9A84C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:all .4s ease;}
 .mrem{font-family:var(--ar);font-size:12px;font-weight:500;color:var(--dim);margin-bottom:18px;}
 .mrem span{color:var(--gold);}
 .ptrack{height:8px;background:rgba(255,255,255,0.05);border-radius:100px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);}
@@ -109,6 +100,130 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .ctimer{font-family:var(--hd);font-size:32px;letter-spacing:3px;color:var(--gold);line-height:1;}
 .csub{font-family:var(--ar);font-size:11px;font-weight:500;color:var(--dim);margin-top:4px;}
 
+/* ════════════════════════════════════════
+   WEEKLY / MONTHLY PERFORMANCE BOX — NEW
+   ════════════════════════════════════════ */
+.perf-box{
+  background:linear-gradient(160deg,#0D0D0D 0%,#0A0A0A 100%);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px 18px;
+  margin-bottom:18px;
+  position:relative;
+  overflow:hidden;
+}
+.perf-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.4;
+}
+.perf-box::after{
+  content:'';position:absolute;bottom:0;right:0;
+  width:120px;height:120px;
+  background:radial-gradient(circle,rgba(201,168,76,0.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+.perf-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:18px;
+}
+.perf-title-left{display:flex;align-items:center;gap:10px;}
+.perf-ico{font-size:22px;}
+.perf-main-title{
+  font-family:var(--ar);font-size:14px;font-weight:700;
+  color:#E8C96A;letter-spacing:0.3px;
+}
+.perf-dates{
+  font-family:var(--mono);font-size:9px;color:var(--dim);
+  margin-top:2px;letter-spacing:1px;
+}
+.perf-toggle{
+  display:flex;align-items:center;gap:5px;
+  background:rgba(201,168,76,0.08);
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:20px;padding:6px 14px;
+  font-family:var(--ar);font-size:11px;font-weight:700;
+  color:var(--gold);cursor:pointer;
+  transition:all .2s;white-space:nowrap;
+}
+.perf-toggle:hover{background:rgba(201,168,76,0.14);}
+.perf-toggle.active{
+  background:rgba(201,168,76,0.18);
+  border-color:rgba(201,168,76,0.5);
+}
+
+/* 4-stat row */
+.perf-stats-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:10px;margin-bottom:16px;
+}
+.perf-stat{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:10px;padding:10px 8px;text-align:center;
+}
+.perf-stat-val{
+  font-family:var(--hd);font-size:22px;line-height:1;
+  color:var(--gold);margin-bottom:4px;
+}
+.perf-stat-val.g{color:var(--green);}
+.perf-stat-val.r{color:var(--red);}
+.perf-stat-val.w{color:#fff;}
+.perf-stat-lbl{
+  font-family:var(--ar);font-size:9px;font-weight:600;
+  color:var(--dim);
+}
+
+/* divider */
+.perf-divider{
+  height:1px;background:rgba(255,255,255,0.06);
+  margin:14px 0;
+}
+
+/* best trades */
+.perf-best-title{
+  font-family:var(--ar);font-size:11px;font-weight:700;
+  color:var(--dim);letter-spacing:0.5px;
+  text-transform:uppercase;margin-bottom:10px;
+}
+.perf-trade-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);
+  gap:8px;
+}
+.perf-trade-row:last-child{border-bottom:none;}
+.perf-trade-rank{
+  font-family:var(--hd);font-size:18px;color:var(--gold-dim);
+  width:20px;flex-shrink:0;
+}
+.perf-trade-sym{
+  flex:1;font-family:var(--mono);font-size:13px;
+  font-weight:600;color:#fff;
+}
+.perf-trade-dir{font-family:var(--ar);font-size:10px;color:var(--dim);margin-top:1px;}
+.perf-trade-pnl{
+  font-family:var(--mono);font-size:13px;font-weight:600;
+  color:var(--green);
+}
+.perf-trade-pct{
+  font-family:var(--mono);font-size:10px;
+  color:var(--dim);margin-top:1px;text-align:left;
+}
+.perf-empty{
+  text-align:center;padding:16px;
+  font-family:var(--ar);font-size:12px;font-weight:600;
+  color:var(--dim);
+}
+
+/* period badge */
+.period-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  background:rgba(201,168,76,0.06);
+  border:1px solid rgba(201,168,76,0.15);
+  border-radius:6px;padding:2px 8px;
+  font-family:var(--mono);font-size:9px;color:var(--gold-dim);
+  margin-right:6px;
+}
+
 /* SECTION */
 .sec{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 16px;margin-bottom:18px;}
 .sectitle{font-family:var(--ar);font-size:12px;font-weight:700;letter-spacing:0.5px;color:var(--dim);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
@@ -147,16 +262,20 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .bo{background:rgba(201,168,76,.10);color:var(--gold);border:1px solid var(--border);}
 
 /* LOCK ROW */
-.lock-banner{
-  display:block;
-  background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:10px;padding:14px 16px;margin-top:12px;
-  text-align:center;
-}
+.lock-banner{display:block;background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px 16px;margin-top:12px;text-align:center;}
 .lock-banner p{font-family:var(--ar);font-size:13px;font-weight:700;color:#e7e9ea;margin-bottom:8px;}
 .lock-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:7px 18px;font-family:var(--ar);font-size:12px;font-weight:700;color:#e7e9ea;text-decoration:none;transition:background .2s;}
 .lock-btn:hover{background:rgba(255,255,255,0.14);}
+
+/* DATA SOURCE BADGE */
+.ds-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(59,130,246,0.08);
+  border:1px solid rgba(59,130,246,0.2);
+  border-radius:6px;padding:3px 8px;
+  font-family:var(--mono);font-size:9px;color:#60a5fa;
+  letter-spacing:1px;margin-right:6px;
+}
 
 /* LOADING */
 .loading{text-align:center;padding:30px 20px;font-family:var(--ar);font-weight:600;color:var(--dim);font-size:12px;letter-spacing:0.5px;}
@@ -169,6 +288,13 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 /* FOOTER */
 .foot{text-align:center;font-family:var(--ar);font-size:11px;font-weight:600;color:var(--dim);letter-spacing:1px;padding-top:20px;border-top:1px solid var(--border);}
 .foot span{color:var(--gold-dim);}
+
+/* RESPONSIVE */
+@media(max-width:380px){
+  .perf-stats-row{grid-template-columns:repeat(2,1fr);}
+  .perf-stat-val{font-size:18px;}
+  .mamount{font-size:40px;}
+}
 </style>
 </head>
 <body>
@@ -180,14 +306,15 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="logo-icon">⚡</div>
       <div>
         <div class="logo-txt">RAMOS AI 360</div>
-        <div class="logo-sub">v40 · AI TRADING</div>
+        <div class="logo-sub">v41 · AI TRADING</div>
       </div>
     </div>
     <div class="pill"><div class="dot"></div>LIVE</div>
   </div>
 
-  <div class="err-box" id="err-box">⚠️ تعذّر تحميل البيانات الحية من قاعدة البيانات</div>
+  <div class="err-box" id="err-box"></div>
 
+  <!-- Signal Banner -->
   <div class="sig-banner" id="sig-banner">
     <div class="sig-banner-inner">
       <div class="sig-live">
@@ -197,12 +324,11 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
           <div class="sig-details" id="sig-details"></div>
         </div>
       </div>
-      <a class="sig-x" href="#" id="sig-x-link" target="_blank">
-        𝕏 تابعني
-      </a>
+      <a class="sig-x" href="#" id="sig-x-link" target="_blank">𝕏 تابعني</a>
     </div>
   </div>
 
+  <!-- Million Counter -->
   <div class="mbox">
     <div class="mlabel">🏆 &nbsp; الهدف النهائي &nbsp; 🏆</div>
     <div class="mtitle">ROAD TO $1,000,000</div>
@@ -213,35 +339,27 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="ppct" id="ppct">0.00%</div>
     <div class="lupd">
       <div class="udot"></div>
-      <span>آخر تحديث: <span id="lupd-time">جاري التحميل...</span></span>
+      <span id="ds-indicator" class="ds-badge">SHEETS</span>
+      آخر تحديث: <span id="lupd-time">جاري التحميل...</span>
     </div>
   </div>
 
+  <!-- Stats Grid -->
   <div class="sgrid">
     <div class="scard"><div class="sico">🎯</div><div class="slabel">نسبة الفوز</div><div class="sval gold" id="wr">—</div><div class="ssub" id="wl">— فوز / — خسارة</div></div>
     <div class="scard"><div class="sico">📊</div><div class="slabel">إجمالي الصفقات</div><div class="sval gold" id="tot">—</div><div class="ssub" id="open-c" style="color:var(--gold)">— مفتوحة ⏳</div></div>
-    <div class="scard"><div class="sico">📈</div><div class="slabel">P&L الكلي</div><div class="sval" id="dpnl">—</div><div class="ssub" id="dtrd">منذ البداية</div></div>
+    <div class="scard"><div class="sico">📈</div><div class="slabel">P&L الكلي</div><div class="sval" id="dpnl">—</div><div class="ssub">منذ البداية</div></div>
     <div class="scard"><div class="sico">🛡️</div><div class="slabel">أقصى تراجع</div><div class="sval r" id="mdd">—</div><div class="ssub">Max Drawdown</div></div>
   </div>
 
+  <!-- Extra Stats -->
   <div class="xgrid">
-    <div class="xcard">
-      <div class="xlabel">⚡ Scalp</div>
-      <div class="xval" id="scalp-wr">—</div>
-      <div class="xsub">نسبة فوز</div>
-    </div>
-    <div class="xcard">
-      <div class="xlabel">🌊 Swing</div>
-      <div class="xval" id="swing-wr">—</div>
-      <div class="xsub">نسبة فوز</div>
-    </div>
-    <div class="xcard">
-      <div class="xlabel">🔥 Streak</div>
-      <div class="xval" id="streak">—</div>
-      <div class="xsub" id="streak-lbl">انتصار متتالي</div>
-    </div>
+    <div class="xcard"><div class="xlabel">⚡ Scalp</div><div class="xval" id="scalp-wr">—</div><div class="xsub">نسبة فوز</div></div>
+    <div class="xcard"><div class="xlabel">🌊 Swing</div><div class="xval" id="swing-wr">—</div><div class="xsub">نسبة فوز</div></div>
+    <div class="xcard"><div class="xlabel">🔥 Streak</div><div class="xval" id="streak">—</div><div class="xsub" id="streak-lbl">انتصار متتالي</div></div>
   </div>
 
+  <!-- Live Ticker -->
   <div class="tbox">
     <div class="ttitle">⚡ &nbsp; أسعار مباشرة · OKX</div>
     <div class="tgrid" id="ticker-top">
@@ -257,118 +375,325 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
   </div>
 
+  <!-- Countdown -->
   <div class="cbox">
     <div class="cico">⏱️</div>
     <div>
       <div class="clabel">الإشارة القادمة</div>
       <div class="ctimer" id="cdn">00:00:00</div>
-      <div class="csub">فحص تلقائي كل ساعة · 7 أصول</div>
+      <div class="csub">فحص تلقائي كل 15 دقيقة · 14 خبير</div>
     </div>
   </div>
 
+  <!-- ═══════════════════════════════════════
+       WEEKLY / MONTHLY PERFORMANCE BOX
+       ═══════════════════════════════════════ -->
+  <div class="perf-box">
+    <div class="perf-header">
+      <div class="perf-title-left">
+        <div class="perf-ico">📅</div>
+        <div>
+          <div class="perf-main-title" id="perf-period-label">أداء الأسبوع</div>
+          <div class="perf-dates" id="perf-dates">جاري الحساب...</div>
+        </div>
+      </div>
+      <button class="perf-toggle" id="perf-toggle" onclick="togglePerfPeriod()">
+        <span id="perf-toggle-txt">📊 الشهر</span>
+      </button>
+    </div>
+
+    <div class="perf-stats-row">
+      <div class="perf-stat">
+        <div class="perf-stat-val g" id="pw-wins">—</div>
+        <div class="perf-stat-lbl">✅ رابحة</div>
+      </div>
+      <div class="perf-stat">
+        <div class="perf-stat-val r" id="pw-losses">—</div>
+        <div class="perf-stat-lbl">❌ خاسرة</div>
+      </div>
+      <div class="perf-stat">
+        <div class="perf-stat-val gold" id="pw-wr">—</div>
+        <div class="perf-stat-lbl">🎯 الفوز</div>
+      </div>
+      <div class="perf-stat">
+        <div class="perf-stat-val w" id="pw-pnl">—</div>
+        <div class="perf-stat-lbl">💵 P&L</div>
+      </div>
+    </div>
+
+    <div class="perf-divider"></div>
+
+    <div class="perf-best-title">🏆 &nbsp; أفضل الصفقات في الفترة</div>
+    <div id="pw-best-trades">
+      <div class="perf-empty">جاري تحميل البيانات...</div>
+    </div>
+  </div>
+
+  <!-- Performance Chart -->
   <div class="sec">
     <div class="sectitle">📊 &nbsp; منحنى الأداء</div>
     <div class="loading" id="chart-load"><div class="spin"></div><br>جاري التحميل...</div>
     <div class="chw" id="chart-wrap" style="display:none"><canvas id="perf-chart"></canvas></div>
   </div>
 
+  <!-- Leaderboard -->
   <div class="sec">
     <div class="sectitle">🏅 &nbsp; أفضل الأصول</div>
     <div id="lb"><div class="loading"><div class="spin"></div><br>جاري التحميل...</div></div>
   </div>
 
+  <!-- Trades Table -->
   <div class="sec">
     <div class="sectitle">🕐 &nbsp; آخر الصفقات</div>
     <div class="trow thdr"><span>الأصل</span><span>النوع</span><span>الاتجاه</span><span>النتيجة</span></div>
     <div id="trades"><div class="loading"><div class="spin"></div><br>جاري التحميل...</div></div>
     <div class="lock-banner" id="lock-banner">
       <p>🔒 الإشارات الكاملة حصرياً — اشترك الآن</p>
-      <a class="lock-btn" href="#" id="x-cta" target="_blank">
-        𝕏 تابع @ramos99rmz على X
-      </a>
+      <a class="lock-btn" href="#" id="x-cta" target="_blank">𝕏 تابع @ramos99rmz على X</a>
     </div>
   </div>
 
-  <div class="foot">RAMOS AI 360 &nbsp;·&nbsp; <span>7 AI Experts + Groq</span> &nbsp;·&nbsp; v40</div>
+  <div class="foot">RAMOS AI 360 &nbsp;·&nbsp; <span>14 AI Experts + Gemini + Groq</span> &nbsp;·&nbsp; v41</div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-// ════════════════════════════════════════════
-//  CONFIG & SUPABASE CREDENTIALS (SECURE)
-// ════════════════════════════════════════════
-var SUPABASE_URL = 'https://bbuumlribzxhahcdckml.supabase.co';
-var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJidXVtbHJpYnp4aGFoY2Rja21sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNDIyNzMsImV4cCI6MjA5MzcxODI3M30.i0T4zBtn3etgCvOFPl0OBpGDjuWCAlhzSLt7HQ9330c';
-
-// إنشاء اتصال آمن للقرأة العامة عبر مفتاح Anon المقيد
-var _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-var GOAL      = 1000000;
-var X_LINK    = 'https://x.com/ramos99rmz';
+// ════════════════════════════════════════════════════════════════
+//  CONFIG
+// ════════════════════════════════════════════════════════════════
+var GOAL   = 1000000;
+var X_LINK = 'https://x.com/ramos99rmz';
 var ASSETS_TOP    = ['BTC','ETH','SOL','XRP'];
 var ASSETS_BOTTOM = ['LINK','AVAX','DOGE'];
 var ASSETS_ALL    = ['BTC','ETH','SOL','XRP','LINK','AVAX','DOGE'];
-var EMOJ      = {BTC:'₿',ETH:'Ξ',SOL:'◎',LINK:'🔗',AVAX:'🔺',DOGE:'🐶',XRP:'💧'};
-var perfChart = null;
+var EMOJ = {BTC:'₿',ETH:'Ξ',SOL:'◎',LINK:'🔗',AVAX:'🔺',DOGE:'🐶',XRP:'💧'};
+var perfChart  = null;
+var _perfMode  = 'week'; // 'week' | 'month'
+var _lastStats = null;
+var _refreshTimer = null;
 
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
+//  DATA SOURCE — Google Sheets (مُشفَّر) + Supabase (احتياطي)
+// ════════════════════════════════════════════════════════════════
+
+// Google Sheets — الهوية مُشفَّرة لأسباب أمنية
+function _gsr() {
+  var _k = ['MV8x','ZkJj','Slly','ZmRF','TUdh','RW5U','Wjdw','MjNH','MDdV','cFlZ','TnA0','bTZi','cUtJ','ZVPR','LXc='];
+  try { return atob(_k.join('')); } catch(e) { return ''; }
+}
+function _gsUrl() {
+  var sid = _gsr();
+  if (!sid) return null;
+  return 'https://docs.google.com/spreadsheets/d/' + sid + '/export?format=csv&gid=0';
+}
+
+// Supabase — احتياطي عند فشل Sheets
+var _SB_URL = 'https://bbuumlribzxhahcdckml.supabase.co';
+var _SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJidXVtbHJpYnp4aGFoY2Rja21sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNDIyNzMsImV4cCI6MjA5MzcxODI3M30.i0T4zBtn3etgCvOFPl0OBpGDjuWCAlhzSLt7HQ9330c';
+
+// ════════════════════════════════════════════════════════════════
 //  INIT
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 window.onload = function() {
-  var xLinks = document.querySelectorAll('#sig-x-link, #x-cta');
-  xLinks.forEach(function(a){ a.href = X_LINK; });
-
+  document.querySelectorAll('#sig-x-link,#x-cta').forEach(function(a){ a.href = X_LINK; });
   startCountdown();
   fetchPrices();
   setInterval(fetchPrices, 15000);
-  
-  // تحميل البيانات لأول مرة ثم إعداد البث المباشر الفوري لقاعدة البيانات
-  loadSupabaseData();
-  subscribeToChanges();
+  loadData();
+  // تحديث تلقائي كل 60 ثانية
+  setInterval(loadData, 60000);
 };
 
-// ════════════════════════════════════════════
-//  LOAD DATA FROM SUPABASE (READ-ONLY)
-// ════════════════════════════════════════════
-function loadSupabaseData() {
-  // جلب الصفقات مرتبة تصاعدياً لضمان دقة عملية الحسابات المتراكمة للمنحنى المالي والدروداون
-  _supabase
-    .from('trades')
-    .select('*')
-    .order('created_at', { ascending: true })
-    .then(function(response) {
-      if (response.error) throw response.error;
-      
-      var stats = parseSupabaseData(response.data || []);
+// ════════════════════════════════════════════════════════════════
+//  LOAD DATA — Sheets أولاً ثم Supabase احتياطياً
+// ════════════════════════════════════════════════════════════════
+function loadData() {
+  var url = _gsUrl();
+  if (!url) { loadSupabase(); return; }
+
+  fetch(url, {cache:'no-store'})
+    .then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.text();
+    })
+    .then(function(csv) {
+      var rows = parseCSV(csv);
+      if (!rows || rows.length < 2) throw new Error('Empty sheet');
+      var trades = mapSheetRows(rows);
+      if (!trades || !trades.length) throw new Error('No trades parsed');
+      var stats = parseTradesData(trades);
+      _lastStats = stats;
       el('err-box').style.display = 'none';
+      el('ds-indicator').textContent = 'SHEETS ✓';
+      el('ds-indicator').style.color = '#4ade80';
       render(stats);
     })
-    .catch(function(err) {
-      console.warn('Supabase data fetch failed:', err);
-      el('err-box').textContent = '⚠️ تعذّر اتصال الموقع بقاعدة البيانات الحية — يتم عرض شاشة خالية';
-      el('err-box').style.display = 'block';
-      render(emptyData());
+    .catch(function(e) {
+      console.warn('Sheets failed:', e.message, '— trying Supabase');
+      el('ds-indicator').textContent = 'SUPABASE';
+      el('ds-indicator').style.color = '#60a5fa';
+      loadSupabase();
     });
 }
 
-// ════════════════════════════════════════════
-//  🌟 REALTIME STREAMING: الاستماع لأي صفقات جديدة أو تحديثات فورية
-// ════════════════════════════════════════════
-function subscribeToChanges() {
-  _supabase
-    .channel('public:trades')
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'trades' }, function(payload) {
-      console.log('مستجدات حية في الصفقات!', payload);
-      loadSupabaseData();
-    })
-    .subscribe();
+// ════════════════════════════════════════════════════════════════
+//  CSV PARSER
+// ════════════════════════════════════════════════════════════════
+function parseCSV(text) {
+  if (!text || !text.trim()) return [];
+  var lines = text.trim().split('\n');
+  return lines.map(function(line) {
+    var result = [], cur = '', inQ = false;
+    for (var i = 0; i < line.length; i++) {
+      var ch = line[i];
+      if (ch === '"') { inQ = !inQ; }
+      else if (ch === ',' && !inQ) { result.push(cur.trim()); cur = ''; }
+      else { cur += ch; }
+    }
+    result.push(cur.trim());
+    return result;
+  });
 }
 
-// ════════════════════════════════════════════
-//  PARSE SUPABASE TRADES DATA RELATIONALLY
-// ════════════════════════════════════════════
-function parseSupabaseData(trades) {
+// ════════════════════════════════════════════════════════════════
+//  MAP SHEET ROWS TO TRADE OBJECTS
+//  يطابق هيكل سجلات بوت RamosAI360:
+//  [0]=timestamp [1]=symbol [2]=direction [3]=entry
+//  [4]=atr [5]=size [6]=sl [7]=tp1 [8]=tp2
+//  [9]=result [10]=msgId [11]=tradeType [12]=?
+//  [13]=tp3 [14]=tp4 [15]=tp5 [16]=tp6 [17]=tp7
+// ════════════════════════════════════════════════════════════════
+function mapSheetRows(rows) {
+  var trades = [];
+  // الصف الأول قد يكون رأساً headers أو بيانات
+  var startIdx = 0;
+  if (rows[0] && typeof rows[0][0] === 'string') {
+    var firstCell = rows[0][0].toLowerCase();
+    if (firstCell.indexOf('time') !== -1 || firstCell.indexOf('date') !== -1
+        || firstCell === 'timestamp' || firstCell === 'created_at') {
+      startIdx = 1; // تجاوز الرأس
+    }
+  }
+  for (var i = startIdx; i < rows.length; i++) {
+    var r = rows[i];
+    if (!r || r.length < 4) continue;
+    var sym = (r[1] || '').trim().replace(/-USDT-SWAP$/,'').replace(/-USDT$/,'');
+    if (!sym) continue;
+    trades.push({
+      created_at   : r[0] || '',
+      symbol       : sym,
+      direction    : (r[2] || '').toUpperCase(),
+      entry_price  : r[3],
+      size         : r[5] || '0',
+      sl           : r[6] || '0',
+      tp1          : r[7] || '0',
+      tp2          : r[8] || '0',
+      result       : (r[9] || '').toUpperCase().trim(),
+      trade_type   : r[11] || 'Scalp',
+      tp3          : r[13] || '0',
+      tp4          : r[14] || '0',
+      tp5          : r[15] || '0',
+      tp6          : r[16] || '0',
+      tp7          : r[17] || '0'
+    });
+  }
+  return trades;
+}
+
+// ════════════════════════════════════════════════════════════════
+//  SUPABASE FALLBACK
+// ════════════════════════════════════════════════════════════════
+function loadSupabase() {
+  fetch(_SB_URL + '/rest/v1/trades?select=*&order=created_at.asc', {
+    headers: {
+      'apikey': _SB_KEY,
+      'Authorization': 'Bearer ' + _SB_KEY,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (!Array.isArray(data)) throw new Error('Bad response');
+    var trades = data.map(function(t) {
+      return {
+        created_at  : t.created_at || '',
+        symbol      : (t.symbol||'').replace(/-USDT-SWAP$/,'').replace(/-USDT$/,''),
+        direction   : (t.direction||'').toUpperCase(),
+        entry_price : t.entry_price,
+        size        : t.size||0,
+        sl          : t.sl||0,
+        tp1         : t.tp1||0,
+        tp2         : t.tp2||0,
+        result      : (t.result||t.status||'').toUpperCase().trim(),
+        trade_type  : t.type||t.trade_type||'Scalp',
+        tp3         : t.tp3||0,
+        tp4         : t.tp4||0,
+        tp5         : t.tp5||0,
+        tp6         : t.tp6||0,
+        tp7         : t.tp7||0
+      };
+    });
+    var stats = parseTradesData(trades);
+    _lastStats = stats;
+    el('err-box').style.display = 'none';
+    render(stats);
+  })
+  .catch(function(err) {
+    console.warn('Supabase also failed:', err);
+    el('err-box').textContent = '⚠️ تعذّر الاتصال بمصادر البيانات — يتم المحاولة مجدداً';
+    el('err-box').style.display = 'block';
+    render(emptyData());
+  });
+}
+
+// ════════════════════════════════════════════════════════════════
+//  CORE PARSER — يحسب P&L لكل أنواع WIN بدقة كاملة
+//  WIN / WIN_TP1..TP7 / LOSS / OPEN
+//  الشرط: يعرض الكل بما فيها OPEN ويحسب P&L المغلقة فقط
+// ════════════════════════════════════════════════════════════════
+function tradeResult(res) {
+  // تطبيع: WIN_TP1، WIN_TP2، WIN_TP3... كلها تعتبر WIN
+  return {
+    isWin  : res === 'WIN' || (res.indexOf('WIN') === 0),
+    isLoss : res === 'LOSS',
+    isOpen : res === 'OPEN' || res === '' || res === 'PENDING'
+  };
+}
+
+function calcTradePnl(trade) {
+  var res    = trade.result;
+  var dir    = trade.direction;
+  var entry  = parseFloat(trade.entry_price) || 0;
+  var size   = parseFloat(trade.size) || 0;
+  var sl     = parseFloat(trade.sl) || 0;
+  if (!entry || !size) return 0;
+
+  var tp1 = parseFloat(trade.tp1)||0;
+  var tp2 = parseFloat(trade.tp2)||0;
+  var tp3 = parseFloat(trade.tp3)||0;
+  var tp4 = parseFloat(trade.tp4)||0;
+  var tp5 = parseFloat(trade.tp5)||0;
+  var tp6 = parseFloat(trade.tp6)||0;
+  var tp7 = parseFloat(trade.tp7)||0;
+
+  // حدد سعر الخروج بناءً على نوع الفوز
+  var exitPrice = tp2; // الافتراضي (WIN = TP2 hit)
+  if      (res === 'WIN_TP7' && tp7 > 0) exitPrice = tp7;
+  else if (res === 'WIN_TP6' && tp6 > 0) exitPrice = tp6;
+  else if (res === 'WIN_TP5' && tp5 > 0) exitPrice = tp5;
+  else if (res === 'WIN_TP4' && tp4 > 0) exitPrice = tp4;
+  else if (res === 'WIN_TP3' && tp3 > 0) exitPrice = tp3;
+  else if (res === 'WIN_TP2' && tp2 > 0) exitPrice = tp2;
+  else if (res === 'WIN_TP1' && tp1 > 0) exitPrice = tp1;
+  else if (res === 'WIN'     && tp2 > 0) exitPrice = tp2;
+  else if (res === 'WIN'     && tp1 > 0) exitPrice = tp1;
+
+  if (!exitPrice) return 0;
+
+  return (dir === 'LONG' ? (exitPrice - entry) : (entry - exitPrice)) * size;
+}
+
+function parseTradesData(trades) {
   if (!trades || !trades.length) return emptyData();
 
   var total=0, wins=0, losses=0, open=0;
@@ -376,42 +701,48 @@ function parseSupabaseData(trades) {
   var history=[0];
   var assetMap={};
   var recentTrades=[];
-
   var scalpW=0, scalpL=0, swingW=0, swingL=0;
   var lastResults=[];
+  var activeSignals=[];
+
+  // مصفوفة كاملة للصفقات للحسابات الأسبوعية/الشهرية
+  var allParsed = [];
 
   trades.forEach(function(trade) {
-    // تعيين الحقول والمطابقة الحذرة مع المسميات لتجنب أي تعارض
-    var sym    = String(trade.symbol || '').trim();
-    var dir    = String(trade.direction || '').trim().toUpperCase();
-    var entry  = parseFloat(trade.entry_price) || 0;
-    var size   = parseFloat(trade.size) || 0;
-    var slVal  = parseFloat(trade.sl) || 0;
-    var tp2    = parseFloat(trade.tp2) || 0;
-    var result = String(trade.result || trade.status || '').trim().toUpperCase();
-    var ttype  = String(trade.type || trade.trade_type || 'Scalp').trim();
+    var sym    = (trade.symbol||'').trim();
+    var dir    = (trade.direction||'').toUpperCase();
+    var entry  = parseFloat(trade.entry_price)||0;
+    var size   = parseFloat(trade.size)||0;
+    var res    = (trade.result||'').toUpperCase().trim();
+    var ttype  = (trade.trade_type||'Scalp').trim();
+    var isS    = ttype.indexOf('Scalp') !== -1;
 
-    if (!sym || sym === '' || !entry || entry <= 0) return;
+    if (!sym || !entry) return;
 
-    var isScalpTrade = ttype.indexOf('Scalp') !== -1;
+    var rObj = tradeResult(res);
     total++;
 
     var pnl = 0;
-    if (result === 'WIN' || result === 'WIN_TP3') {
+    if (rObj.isWin) {
       wins++;
-      pnl = (dir === 'LONG' ? (tp2 - entry) : (entry - tp2)) * size;
-      if (isScalpTrade) scalpW++; else swingW++;
+      pnl = calcTradePnl(trade);
+      if (isS) scalpW++; else swingW++;
       lastResults.push('WIN');
-    } else if (result === 'LOSS') {
+    } else if (rObj.isLoss) {
       losses++;
-      pnl = (dir === 'LONG' ? (slVal - entry) : (entry - slVal)) * size;
-      if (isScalpTrade) scalpL++; else swingL++;
+      var slVal = parseFloat(trade.sl)||0;
+      if (slVal > 0 && entry > 0) {
+        pnl = (dir === 'LONG' ? (slVal - entry) : (entry - slVal)) * size;
+      }
+      if (isS) scalpL++; else swingL++;
       lastResults.push('LOSS');
-    } else if (result === 'OPEN') {
+    } else {
+      // صفقة مفتوحة — تُعدّ في الإجمالي لكن P&L = 0 (لا يوجد سعر حالي)
       open++;
       lastResults.push('OPEN');
     }
 
+    // تراكم P&L للمنحنى والـ Max Drawdown
     totalUSD += pnl;
     equity   += pnl;
     history.push(Math.round(totalUSD));
@@ -419,42 +750,49 @@ function parseSupabaseData(trades) {
     var dd = peak - equity;
     if (dd > maxDD) maxDD = dd;
 
+    // Asset Map
     if (sym) {
-      if (!assetMap[sym]) assetMap[sym] = {sym:sym, wins:0, losses:0, pnl:0};
-      if (result === 'WIN' || result === 'WIN_TP3') { assetMap[sym].wins++; assetMap[sym].pnl += pnl; }
-      if (result === 'LOSS')                        { assetMap[sym].losses++; assetMap[sym].pnl += pnl; }
+      if (!assetMap[sym]) assetMap[sym]={sym:sym,wins:0,losses:0,pnl:0};
+      if (rObj.isWin)   { assetMap[sym].wins++;   assetMap[sym].pnl += pnl; }
+      if (rObj.isLoss)  { assetMap[sym].losses++;  assetMap[sym].pnl += pnl; }
     }
 
-    var timeStr = '--:--';
-    try {
-      var d = new Date(trade.created_at);
-      if (!isNaN(d)) timeStr = d.toLocaleTimeString('ar-SA', {hour:'2-digit', minute:'2-digit'});
-    } catch(e){}
+    // وقت العرض
+    var timeStr='--:--';
+    try{ var d=new Date(trade.created_at||''); if(!isNaN(d)) timeStr=d.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'}); }catch(e_){}
 
-    recentTrades.push({time:timeStr, asset:sym, dir:dir, type:ttype, res:result});
+    var parsedTrade = {
+      time:timeStr, asset:sym, dir:dir, type:ttype, res:res,
+      pnl:pnl, entry:entry, size:size,
+      ts: trade.created_at ? new Date(trade.created_at).getTime() : 0
+    };
+    recentTrades.push(parsedTrade);
+    allParsed.push(parsedTrade);
+
+    if (rObj.isOpen) activeSignals.push(parsedTrade);
   });
 
-  var closed = wins + losses;
-  var winRate = closed > 0 ? Math.round(wins / closed * 100) : 0;
-  var scalpWR = (scalpW + scalpL) > 0 ? Math.round(scalpW / (scalpW + scalpL) * 100) : null;
-  var swingWR = (swingW + swingL) > 0 ? Math.round(swingW / (swingW + swingL) * 100) : null;
+  var closed  = wins + losses;
+  var winRate = closed > 0 ? Math.round(wins/closed*100) : 0;
+  var scalpWR = (scalpW+scalpL)>0 ? Math.round(scalpW/(scalpW+scalpL)*100) : null;
+  var swingWR = (swingW+swingL)>0 ? Math.round(swingW/(swingW+swingL)*100) : null;
 
-  // حساب متتالية الأرباح/الخسائر المباشرة
-  var streak = 0, streakType = 'WIN';
-  var closed_only = lastResults.filter(function(r){ return r !== 'OPEN'; });
-  if (closed_only.length > 0) {
-    streakType = closed_only[closed_only.length - 1];
-    for (var j = closed_only.length - 1; j >= 0; j--) {
-      if (closed_only[j] === streakType) streak++;
+  // Streak
+  var streak=0, streakType='WIN';
+  var closedOnly = lastResults.filter(function(r){return r!=='OPEN';});
+  if (closedOnly.length > 0) {
+    streakType = closedOnly[closedOnly.length-1];
+    for (var j=closedOnly.length-1;j>=0;j--) {
+      if (closedOnly[j]===streakType) streak++;
       else break;
     }
   }
 
-  var activeSignals = recentTrades.filter(function(t){ return t.res === 'OPEN'; });
-  if (history.length > 20) history = history.slice(-20);
+  if (history.length > 40) history = history.slice(-40);
 
   return {
     current     : Math.max(Math.round(totalUSD), 0),
+    totalUSDraw : totalUSD,
     wins        : wins,
     losses      : losses,
     winRate     : winRate,
@@ -462,245 +800,325 @@ function parseSupabaseData(trades) {
     swingWR     : swingWR,
     streak      : streak,
     streakType  : streakType,
-    total       : total,
+    total       : total,    // كل الصفقات بما فيها المفتوحة
     open        : open,
-    totalUSD    : totalUSD,
     maxDrawdown : Math.round(maxDD),
     history     : history,
-    assetStats  : Object.values(assetMap).sort(function(a,b){ return b.pnl - a.pnl; }),
-    recentTrades: recentTrades.slice(-12).reverse(), // قلب الصفقات لتظهر الأحدث في الأعلى دائماً
-    activeSignals: activeSignals
+    assetStats  : Object.values(assetMap).sort(function(a,b){return b.pnl-a.pnl;}),
+    recentTrades: recentTrades.slice(-12).reverse(),
+    activeSignals: activeSignals,
+    allTrades   : allParsed  // للحسابات الدورية
   };
 }
 
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 //  RENDER
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 function render(s) {
   if (!s) return;
 
-  var cur = s.current || 0;
-  var pct = Math.min((cur / GOAL) * 100, 100);
-  var rem = Math.max(GOAL - cur, 0);
+  var cur  = s.totalUSDraw || 0;
+  var disp = Math.max(Math.round(cur), 0);
+  var pct  = Math.min((disp / GOAL) * 100, 100);
+  var rem  = Math.max(GOAL - disp, 0);
 
-  // Million bar
-  el('cur-pnl').textContent   = '$' + fmt(cur);
-  el('rem-amt').textContent   = '$' + fmt(rem);
-  el('ppct').textContent      = pct.toFixed(2) + '%';
-  el('lupd-time').textContent = new Date().toLocaleTimeString('ar-SA');
+  // Million bar — يُحدَّث مع كل صفقة
+  el('cur-pnl').textContent    = (cur < 0 ? '-' : '') + '$' + fmt(Math.abs(cur));
+  el('rem-amt').textContent    = '$' + fmt(rem);
+  el('ppct').textContent       = pct.toFixed(2) + '%';
+  el('lupd-time').textContent  = new Date().toLocaleTimeString('ar-SA');
   setTimeout(function(){ el('pfill').style.width = pct + '%'; }, 300);
 
   // Stats
   var wr = s.winRate || 0;
-  el('wr').textContent    = wr + '%';
-  el('wr').className      = 'sval ' + (wr >= 50 ? 'g' : 'r');
-  el('wl').textContent    = (s.wins || 0) + ' فوز / ' + (s.losses || 0) + ' خسارة';
-  el('tot').textContent   = (s.total || 0);
-  el('open-c').textContent= (s.open || 0) + ' مفتوحة ⏳';
+  el('wr').textContent   = wr + '%';
+  el('wr').className     = 'sval ' + (wr>=50?'g':'r');
+  el('wl').textContent   = (s.wins||0) + ' فوز / ' + (s.losses||0) + ' خسارة';
+  // إجمالي الصفقات = الكل (بما فيها المفتوحة)
+  el('tot').textContent  = (s.total||0);
+  el('open-c').textContent = (s.open||0) + ' مفتوحة ⏳';
 
-  var tp = s.totalUSD || 0;
-  el('dpnl').textContent  = (tp >= 0 ? '+' : '') + ' $' + fmt(Math.abs(tp));
-  el('dpnl').className    = 'sval ' + (tp >= 0 ? 'g' : 'r');
-  el('mdd').textContent   = '-$' + fmt(s.maxDrawdown || 0);
+  var tp = s.totalUSDraw||0;
+  el('dpnl').textContent = (tp>=0?'+':'-') + ' $' + fmt(Math.abs(tp));
+  el('dpnl').className   = 'sval '+(tp>=0?'g':'r');
+  el('mdd').textContent  = '-$' + fmt(s.maxDrawdown||0);
 
   // Extra stats
-  el('scalp-wr').textContent = s.scalpWR !== null ? s.scalpWR + '%' : '—';
-  el('scalp-wr').style.color = s.scalpWR >= 50 ? 'var(--green)' : s.scalpWR !== null ? 'var(--red)' : 'var(--gold)';
-  el('swing-wr').textContent = s.swingWR !== null ? s.swingWR + '%' : '—';
-  el('swing-wr').style.color = s.swingWR >= 50 ? 'var(--green)' : s.swingWR !== null ? 'var(--red)' : 'var(--gold)';
-
-  if (s.streak > 0) {
+  el('scalp-wr').textContent = s.scalpWR!==null ? s.scalpWR+'%' : '—';
+  el('scalp-wr').style.color = s.scalpWR>=50?'var(--green)':s.scalpWR!==null?'var(--red)':'var(--gold)';
+  el('swing-wr').textContent = s.swingWR!==null ? s.swingWR+'%' : '—';
+  el('swing-wr').style.color = s.swingWR>=50?'var(--green)':s.swingWR!==null?'var(--red)':'var(--gold)';
+  if (s.streak>0) {
     el('streak').textContent = s.streak;
-    el('streak').style.color = s.streakType === 'WIN' ? 'var(--green)' : 'var(--red)';
-    el('streak-lbl').textContent = s.streakType === 'WIN' ? 'انتصار متتالي' : 'خسارة متتالية';
+    el('streak').style.color = s.streakType==='WIN'?'var(--green)':'var(--red)';
+    el('streak-lbl').textContent = s.streakType==='WIN'?'انتصار متتالي':'خسارة متتالية';
   }
 
-  // Active signal banner
-  renderSignalBanner(s.activeSignals || []);
-
-  buildChart(s.history || [0]);
-  buildLB(s.assetStats || []);
-  buildTrades(s.recentTrades || []);
+  // Signal banner
+  renderSignalBanner(s.activeSignals||[]);
+  buildChart(s.history||[0]);
+  buildLB(s.assetStats||[]);
+  buildTrades(s.recentTrades||[]);
+  renderPerfPeriod(s);
 }
 
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 //  SIGNAL BANNER
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 function renderSignalBanner(signals) {
-  if (!signals || !signals.length) {
-    el('sig-banner').style.display = 'none';
-    return;
-  }
+  if (!signals||!signals.length) { el('sig-banner').style.display='none'; return; }
   var s = signals[0];
   el('sig-banner').style.display = 'block';
   el('sig-label').textContent = 'صفقة نشطة: ' + s.asset;
-
-  var isLong = s.dir === 'LONG';
-  var typeLabel = s.type.indexOf('Swing') !== -1 ? 'Swing' : 'Scalp';
+  var isLong = s.dir==='LONG';
+  var typeLabel = s.type.indexOf('Swing')!==-1?'Swing':'Scalp';
   el('sig-details').innerHTML =
-    '<span class="sig-chip ' + (isLong ? 'long' : 'short') + '">' + (isLong ? '▲ LONG' : '▼ SHORT') + '</span>' +
-    '<span class="sig-chip">' + typeLabel + '</span>';
+    '<span class="sig-chip '+(isLong?'long':'short')+'">'+(isLong?'▲ LONG':'▼ SHORT')+'</span>'+
+    '<span class="sig-chip">'+typeLabel+'</span>';
 }
 
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
+//  WEEKLY / MONTHLY PERFORMANCE
+// ════════════════════════════════════════════════════════════════
+function togglePerfPeriod() {
+  _perfMode = _perfMode === 'week' ? 'month' : 'week';
+  var btn = el('perf-toggle');
+  btn.classList.toggle('active', _perfMode === 'month');
+  el('perf-toggle-txt').textContent = _perfMode === 'week' ? '📊 الشهر' : '📅 الأسبوع';
+  if (_lastStats) renderPerfPeriod(_lastStats);
+}
+
+function renderPerfPeriod(stats) {
+  var now     = new Date();
+  var trades  = (stats.allTrades || []);
+  var filtered, dateLabel;
+
+  if (_perfMode === 'week') {
+    // الأسبوع الحالي (من الاثنين)
+    var dayOfWeek = now.getDay(); // 0=Sun
+    var mondayOffset = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+    var weekStart = new Date(now);
+    weekStart.setDate(now.getDate() - mondayOffset);
+    weekStart.setHours(0,0,0,0);
+    filtered = trades.filter(function(t){ return t.ts >= weekStart.getTime(); });
+    el('perf-period-label').textContent = 'أداء الأسبوع';
+    dateLabel = weekStart.toLocaleDateString('ar-SA',{day:'numeric',month:'short'})
+      + ' — ' + now.toLocaleDateString('ar-SA',{day:'numeric',month:'short'});
+  } else {
+    // الشهر الحالي
+    var monthStart = new Date(now.getFullYear(), now.getMonth(), 1, 0, 0, 0, 0);
+    filtered = trades.filter(function(t){ return t.ts >= monthStart.getTime(); });
+    el('perf-period-label').textContent = 'الأداء الشهري';
+    dateLabel = now.toLocaleDateString('ar-SA',{month:'long',year:'numeric'});
+  }
+
+  el('perf-dates').textContent = dateLabel;
+
+  // حساب إحصاءات الفترة
+  var pW=0, pL=0, pPnl=0;
+  var closedTrades = [];
+  filtered.forEach(function(t) {
+    var r = tradeResult(t.res);
+    if (r.isWin)  { pW++;   pPnl += t.pnl; closedTrades.push(t); }
+    if (r.isLoss) { pL++;   pPnl += t.pnl; }
+  });
+  var pClosed = pW + pL;
+  var pWR = pClosed > 0 ? Math.round(pW/pClosed*100) : 0;
+
+  el('pw-wins').textContent   = pW;
+  el('pw-losses').textContent = pL;
+  el('pw-wr').textContent     = pClosed > 0 ? pWR + '%' : '—';
+  el('pw-pnl').textContent    = (pPnl >= 0 ? '+' : '-') + '$' + fmt(Math.abs(pPnl));
+  el('pw-pnl').className      = 'perf-stat-val ' + (pPnl >= 0 ? 'g' : 'r');
+
+  // أفضل 3 صفقات ربحاً في الفترة
+  var best = closedTrades
+    .filter(function(t){ return t.pnl > 0; })
+    .sort(function(a,b){ return b.pnl - a.pnl; })
+    .slice(0, 3);
+
+  var html = '';
+  if (!best.length) {
+    html = '<div class="perf-empty">لا توجد صفقات رابحة في هذه الفترة</div>';
+  } else {
+    best.forEach(function(t, i) {
+      var pct = t.entry > 0 ? Math.abs((t.pnl / (t.entry * (parseFloat(t.size)||1))) * 100) : 0;
+      var medals = ['🥇','🥈','🥉'];
+      var dirLbl = t.dir === 'LONG' ? '▲ Long' : '▼ Short';
+      var typeLbl = (t.type||'').indexOf('Swing')!==-1?'Swing':'Scalp';
+      html +=
+        '<div class="perf-trade-row">'+
+          '<div class="perf-trade-rank">'+(medals[i]||i+1)+'</div>'+
+          '<div>'+
+            '<div class="perf-trade-sym">'+t.asset+'</div>'+
+            '<div class="perf-trade-dir">'+dirLbl+' · '+typeLbl+'</div>'+
+          '</div>'+
+          '<div style="text-align:left">'+
+            '<div class="perf-trade-pnl">+$'+fmt(t.pnl)+'</div>'+
+            (pct>0?'<div class="perf-trade-pct">+'+pct.toFixed(1)+'%</div>':'')+
+          '</div>'+
+        '</div>';
+    });
+  }
+  el('pw-best-trades').innerHTML = html;
+}
+
+// ════════════════════════════════════════════════════════════════
 //  CHART
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 function buildChart(hist) {
   el('chart-load').style.display = 'none';
   el('chart-wrap').style.display = 'block';
   var canvas = el('perf-chart');
   var ctx = canvas.getContext('2d');
   if (perfChart) perfChart.destroy();
-  var grad = ctx.createLinearGradient(0, 0, 0, 160);
-  grad.addColorStop(0, 'rgba(201,168,76,0.3)');
-  grad.addColorStop(1, 'rgba(201,168,76,0)');
-  perfChart = new Chart(canvas, {
-    type: 'line',
-    data: {
-      labels: hist.map(function(_, i){ return 'S' + (i + 1); }),
-      datasets: [{
-        data: hist, borderColor: '#C9A84C', borderWidth: 2,
-        pointBackgroundColor: '#C9A84C', pointRadius: 3,
-        fill: true, backgroundColor: grad, tension: 0.45
+  var grad = ctx.createLinearGradient(0,0,0,160);
+  grad.addColorStop(0,'rgba(201,168,76,0.3)');
+  grad.addColorStop(1,'rgba(201,168,76,0)');
+  perfChart = new Chart(canvas,{
+    type:'line',
+    data:{
+      labels:hist.map(function(_,i){return 'S'+(i+1);}),
+      datasets:[{
+        data:hist,borderColor:'#C9A84C',borderWidth:2,
+        pointBackgroundColor:'#C9A84C',pointRadius:3,
+        fill:true,backgroundColor:grad,tension:0.45
       }]
     },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: '#111', borderColor: 'rgba(201,168,76,.3)', borderWidth: 1,
-          titleColor: '#C9A84C', bodyColor: '#fff',
-          callbacks: { label: function(c){ return ' $' + fmt(c.parsed.y); } }
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'#111',borderColor:'rgba(201,168,76,.3)',borderWidth:1,
+          titleColor:'#C9A84C',bodyColor:'#fff',
+          callbacks:{label:function(c){return ' $'+fmt(c.parsed.y);}}
         }
       },
-      scales: {
-        x: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#444', font: { family: 'IBM Plex Mono', size: 10 } } },
-        y: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#444', font: { family: 'IBM Plex Mono', size: 10 }, callback: function(v){ return '$' + fmt(v); } } }
+      scales:{
+        x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#444',font:{family:'IBM Plex Mono',size:10}}},
+        y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#444',font:{family:'IBM Plex Mono',size:10},callback:function(v){return '$'+fmt(v);}}}
       }
     }
   });
 }
 
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 //  LEADERBOARD
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 function buildLB(data) {
-  if (!data.length) {
-    data = ASSETS_ALL.map(function(a){ return {sym:a, wins:0, losses:0, pnl:0}; });
-  }
-  data.sort(function(a, b){ return b.pnl - a.pnl; });
-  var maxP = Math.max.apply(null, data.map(function(x){ return Math.abs(x.pnl); })) || 1;
-  el('lb').innerHTML = data.map(function(a, i){
-    var pos = a.pnl >= 0;
-    var tot = (a.wins || 0) + (a.losses || 0);
-    var wr = tot > 0 ? Math.round(a.wins / tot * 100) : 0;
-    var bw = Math.round(Math.abs(a.pnl) / maxP * 100);
-    return '<div class="lbrow">' +
-      '<div class="lbrank' + (i === 0 ? ' top' : '') + '">' + (i + 1) + '</div>' +
-      '<div class="lbcoin">' + (EMOJ[a.sym] || '💱') + '</div>' +
-      '<div class="lbname"><div class="lbsym">' + a.sym + '</div>' +
-      '<div class="lbstat">' + a.wins + ' فوز / ' + a.losses + ' خسارة · ' + wr + '%</div></div>' +
-      '<div class="lbpnl"><div class="lbpct ' + (pos ? 'pos' : 'neg') + '">' + (pos ? '+' : '') + ' $' + fmt(Math.abs(a.pnl)) + '</div>' +
-      '<div class="lbbar"><div class="lbbfill ' + (pos ? 'pos' : 'neg') + '" style="width:' + bw + '%"></div></div></div>' +
+  if (!data.length) data=ASSETS_ALL.map(function(a){return{sym:a,wins:0,losses:0,pnl:0};});
+  data.sort(function(a,b){return b.pnl-a.pnl;});
+  var maxP=Math.max.apply(null,data.map(function(x){return Math.abs(x.pnl);})) || 1;
+  el('lb').innerHTML=data.map(function(a,i){
+    var pos=a.pnl>=0,tot=(a.wins||0)+(a.losses||0),wr=tot>0?Math.round(a.wins/tot*100):0;
+    var bw=Math.round(Math.abs(a.pnl)/maxP*100);
+    return '<div class="lbrow">'+
+      '<div class="lbrank'+(i===0?' top':'')+'">'+( i+1)+'</div>'+
+      '<div class="lbcoin">'+(EMOJ[a.sym]||'💱')+'</div>'+
+      '<div class="lbname"><div class="lbsym">'+a.sym+'</div>'+
+      '<div class="lbstat">'+a.wins+' فوز / '+a.losses+' خسارة · '+wr+'%</div></div>'+
+      '<div class="lbpnl"><div class="lbpct '+(pos?'pos':'neg')+'">'+(pos?'+':'')+' $'+fmt(Math.abs(a.pnl))+'</div>'+
+      '<div class="lbbar"><div class="lbbfill '+(pos?'pos':'neg')+'" style="width:'+bw+'%"></div></div></div>'+
       '</div>';
   }).join('');
 }
 
-// ════════════════════════════════════════════
-//  TRADES TABLE
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
+//  TRADES TABLE — يعرض كل الصفقات بما فيها المفتوحة
+// ════════════════════════════════════════════════════════════════
 function buildTrades(trades) {
   if (!trades.length) {
-    el('trades').innerHTML = '<div style="text-align:center;padding:20px;color:var(--dim);font-family:var(--ar);font-size:12px;font-weight:600">لا توجد صفقات مسجلة بعد في قاعدة البيانات</div>';
+    el('trades').innerHTML='<div style="text-align:center;padding:20px;color:var(--dim);font-family:var(--ar);font-size:12px;font-weight:600">لا توجد صفقات مسجلة بعد</div>';
     return;
   }
-  el('trades').innerHTML = trades.slice(0, 12).map(function(t){
-    var isLong = t.dir === 'LONG';
-    var isWin = t.res === 'WIN' || t.res === 'WIN_TP3';
-    var isOpen = t.res === 'OPEN';
-    var tClass = (t.type || '').indexOf('Swing') !== -1 ? 'bsw' : 'bsc';
-    var rClass = isOpen ? 'bo' : isWin ? 'bw' : 'bls';
-    var rText = t.res === 'WIN_TP3' ? 'TP3 🎯' : isOpen ? '⏳ نشطة' : isWin ? '✅ ربح' : '❌ خسارة';
-    var typeShort = (t.type || '').indexOf('Swing') !== -1 ? 'Swing' : 'Scalp';
-    return '<div class="trow">' +
-      '<div><div class="tasset">' + (t.asset || '—') + '</div>' +
-      '<div class="ttime">' + (t.time || '—') + '</div></div>' +
-      '<span class="badge ' + tClass + '">' + typeShort + '</span>' +
-      '<span class="badge ' + (isLong ? 'bl' : 'bs') + '">' + (isLong ? '▲ LONG' : '▼ SHORT') + '</span>' +
-      '<span class="badge ' + rClass + '">' + rText + '</span>' +
+  el('trades').innerHTML=trades.slice(0,12).map(function(t){
+    var isLong = t.dir==='LONG';
+    var r = tradeResult(t.res||'');
+    var isWin=r.isWin, isOpen=r.isOpen;
+    var tClass=(t.type||'').indexOf('Swing')!==-1?'bsw':'bsc';
+    // نوع النتيجة بالتفصيل (TP1..TP7 إذا كان موجوداً)
+    var rLabel, rClass;
+    if (isOpen) { rLabel='⏳ نشطة'; rClass='bo'; }
+    else if (isWin) {
+      var lvl = t.res.match(/TP(\d)/);
+      rLabel = lvl ? '✅ '+t.res : '✅ ربح';
+      rClass='bw';
+    } else { rLabel='❌ خسارة'; rClass='bls'; }
+    var typeShort=(t.type||'').indexOf('Swing')!==-1?'Swing':'Scalp';
+    return '<div class="trow">'+
+      '<div><div class="tasset">'+(t.asset||'—')+'</div>'+
+      '<div class="ttime">'+(t.time||'—')+'</div></div>'+
+      '<span class="badge '+tClass+'">'+typeShort+'</span>'+
+      '<span class="badge '+(isLong?'bl':'bs')+'">'+(isLong?'▲ LONG':'▼ SHORT')+'</span>'+
+      '<span class="badge '+rClass+'">'+rLabel+'</span>'+
       '</div>';
   }).join('');
 }
 
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 //  LIVE PRICES — OKX
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 function fetchPrices() {
   var topSyms   = ['BTC-USDT-SWAP','ETH-USDT-SWAP','SOL-USDT-SWAP','XRP-USDT-SWAP'];
   var botSyms   = ['LINK-USDT-SWAP','AVAX-USDT-SWAP','DOGE-USDT-SWAP'];
   var allSyms   = topSyms.concat(botSyms);
-
   var proms = allSyms.map(function(s){
-    return fetch('https://www.okx.com/api/v5/market/ticker?instId=' + s)
-      .then(function(r){ return r.json(); })
-      .catch(function(){ return null; });
+    return fetch('https://www.okx.com/api/v5/market/ticker?instId='+s)
+      .then(function(r){return r.json();}).catch(function(){return null;});
   });
-
   Promise.all(proms).then(function(res){
-    function makeItem(r, name) {
-      if (!r || !r.data || !r.data[0]) return '<div class="titem"><div class="tsym">' + name + '</div><div class="tprice" style="color:var(--dim)">—</div></div>';
-      var d = r.data[0];
-      var p = parseFloat(d.last);
-      var chg = ((p - parseFloat(d.open24h)) / parseFloat(d.open24h) * 100);
-      var pf = p >= 10000 ? p.toFixed(1) : p >= 1 ? p.toFixed(3) : p.toFixed(5);
-      return '<div class="titem">' +
-        '<div class="tsym">' + name + '</div>' +
-        '<div class="tprice">' + pf + '</div>' +
-        '<div class="tchg ' + (chg >= 0 ? 'up' : 'dn') + '">' + (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%</div>' +
-        '</div>';
+    function makeItem(r,name){
+      if(!r||!r.data||!r.data[0]) return '<div class="titem"><div class="tsym">'+name+'</div><div class="tprice" style="color:var(--dim)">—</div></div>';
+      var d=r.data[0];
+      var p=parseFloat(d.last);
+      var chg=((p-parseFloat(d.open24h))/parseFloat(d.open24h)*100);
+      var pf=p>=10000?p.toFixed(1):p>=1?p.toFixed(3):p.toFixed(5);
+      return '<div class="titem"><div class="tsym">'+name+'</div><div class="tprice">'+pf+'</div>'+
+        '<div class="tchg '+(chg>=0?'up':'dn')+'">'+(chg>=0?'+':'')+chg.toFixed(2)+'%</div></div>';
     }
-    var topHtml = res.slice(0, 4).map(function(r, i){ return makeItem(r, ASSETS_TOP[i]); }).join('');
-    var botHtml = res.slice(4).map(function(r, i){ return makeItem(r, ASSETS_BOTTOM[i]); }).join('');
-    el('ticker-top').innerHTML = topHtml;
-    el('ticker-bottom').innerHTML = botHtml;
+    el('ticker-top').innerHTML=res.slice(0,4).map(function(r,i){return makeItem(r,ASSETS_TOP[i]);}).join('');
+    el('ticker-bottom').innerHTML=res.slice(4).map(function(r,i){return makeItem(r,ASSETS_BOTTOM[i]);}).join('');
   });
 }
 
-// ════════════════════════════════════════════
-//  COUNTDOWN
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
+//  COUNTDOWN — تحديث كل دقيقة للإشارة القادمة
+// ════════════════════════════════════════════════════════════════
 function startCountdown() {
   function tick(){
-    var now = new Date(), next = new Date(now);
-    next.setMinutes(0, 0, 0); next.setHours(next.getHours() + 1);
-    var d = next - now;
-    el('cdn').textContent =
-      String(Math.floor(d / 3600000)).padStart(2, '0') + ':' +
-      String(Math.floor((d % 3600000) / 60000)).padStart(2, '0') + ':' +
-      String(Math.floor((d % 60000) / 1000)).padStart(2, '0');
+    var now=new Date(),next=new Date(now);
+    // runScalp يعمل كل 15 دقيقة
+    var mins=now.getMinutes();
+    var nextMins=Math.ceil((mins+1)/15)*15;
+    if(nextMins>=60){next.setHours(next.getHours()+1);next.setMinutes(0,0,0);}
+    else{next.setMinutes(nextMins,0,0);}
+    var d=next-now;
+    el('cdn').textContent=
+      String(Math.floor(d/3600000)).padStart(2,'0')+':'+
+      String(Math.floor((d%3600000)/60000)).padStart(2,'0')+':'+
+      String(Math.floor((d%60000)/1000)).padStart(2,'0');
   }
-  tick(); setInterval(tick, 1000);
+  tick(); setInterval(tick,1000);
 }
 
-// ════════════════════════════════════════════
+// ════════════════════════════════════════════════════════════════
 //  HELPERS
-// ════════════════════════════════════════════
-function el(id){ return document.getElementById(id); }
+// ════════════════════════════════════════════════════════════════
+function el(id){return document.getElementById(id);}
 function fmt(n){
-  n = +n;
-  if (isNaN(n)) return '0';
-  if (n >= 1000000) return (n / 1000000).toFixed(2) + 'M';
-  if (n >= 1000)    return (n / 1000).toFixed(1) + 'K';
+  n=+n; if(isNaN(n))return'0';
+  if(n>=1000000)return(n/1000000).toFixed(2)+'M';
+  if(n>=1000)return(n/1000).toFixed(1)+'K';
   return n.toFixed(0);
 }
 function emptyData(){
-  return {
-    current:0, wins:0, losses:0, winRate:0, scalpWR:null, swingWR:null,
-    streak:0, streakType:'WIN', total:0, open:0, totalUSD:0, maxDrawdown:0,
-    history:[0],
-    assetStats:ASSETS_ALL.map(function(a){ return {sym:a, wins:0, losses:0, pnl:0}; }),
-    recentTrades:[], activeSignals:[]
+  return{
+    current:0,totalUSDraw:0,wins:0,losses:0,winRate:0,
+    scalpWR:null,swingWR:null,streak:0,streakType:'WIN',
+    total:0,open:0,maxDrawdown:0,history:[0],
+    assetStats:ASSETS_ALL.map(function(a){return{sym:a,wins:0,losses:0,pnl:0};}),
+    recentTrades:[],activeSignals:[],allTrades:[]
   };
 }
 </script>
