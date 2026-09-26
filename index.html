@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>RAMOS AI 360 — v41</title>
+<title>RAMOS AI 360 — v42</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -306,7 +306,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="logo-icon">⚡</div>
       <div>
         <div class="logo-txt">RAMOS AI 360</div>
-        <div class="logo-sub">v41 · AI TRADING</div>
+        <div class="logo-sub">v42 · AI TRADING</div>
       </div>
     </div>
     <div class="pill"><div class="dot"></div>LIVE</div>
@@ -453,7 +453,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     </div>
   </div>
 
-  <div class="foot">RAMOS AI 360 &nbsp;·&nbsp; <span>14 AI Experts + Gemini + Groq</span> &nbsp;·&nbsp; v41</div>
+  <div class="foot">RAMOS AI 360 &nbsp;·&nbsp; <span>14 AI Experts + Gemini + Groq</span> &nbsp;·&nbsp; v42</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -473,10 +473,10 @@ var _lastStats = null;
 var _refreshTimer = null;
 
 // ════════════════════════════════════════════════════════════════
-//  DATA SOURCE — Google Sheets (مُشفَّر) + Supabase (احتياطي)
+//  DATA SOURCE — Google Sheets (المصدر الوحيد)
 // ════════════════════════════════════════════════════════════════
 
-// Google Sheets — الهوية مُشفَّرة لأسباب أمنية
+// Google Sheets — الهوية مُشفَّرة داخل الكود لأسباب أمنية
 function _gsr() {
   var _k = ['MV8x','ZkJj','Slly','ZmRF','TUdh','RW5U','Wjdw','MjNH','MDdV','cFlZ','TnA0','bTZi','cUtJ','ZVPR','LXc='];
   try { return atob(_k.join('')); } catch(e) { return ''; }
@@ -486,10 +486,6 @@ function _gsUrl() {
   if (!sid) return null;
   return 'https://docs.google.com/spreadsheets/d/' + sid + '/export?format=csv&gid=0';
 }
-
-// Supabase — احتياطي عند فشل Sheets
-var _SB_URL = 'https://bbuumlribzxhahcdckml.supabase.co';
-var _SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJidXVtbHJpYnp4aGFoY2Rja21sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNDIyNzMsImV4cCI6MjA5MzcxODI3M30.i0T4zBtn3etgCvOFPl0OBpGDjuWCAlhzSLt7HQ9330c';
 
 // ════════════════════════════════════════════════════════════════
 //  INIT
@@ -505,11 +501,19 @@ window.onload = function() {
 };
 
 // ════════════════════════════════════════════════════════════════
-//  LOAD DATA — Sheets أولاً ثم Supabase احتياطياً
+//  LOAD DATA — Google Sheets (المصدر الوحيد)
 // ════════════════════════════════════════════════════════════════
 function loadData() {
   var url = _gsUrl();
-  if (!url) { loadSupabase(); return; }
+  if (!url) {
+    el('err-box').textContent = '⚠️ خطأ في تهيئة رابط البيانات';
+    el('err-box').style.display = 'block';
+    render(emptyData());
+    return;
+  }
+
+  el('ds-indicator').textContent = 'SHEETS...';
+  el('ds-indicator').style.color = 'var(--gold-dim)';
 
   fetch(url, {cache:'no-store'})
     .then(function(r) {
@@ -518,9 +522,9 @@ function loadData() {
     })
     .then(function(csv) {
       var rows = parseCSV(csv);
-      if (!rows || rows.length < 2) throw new Error('Empty sheet');
+      if (!rows || rows.length < 2) throw new Error('الشيت فارغ أو لا يحتوي بيانات');
       var trades = mapSheetRows(rows);
-      if (!trades || !trades.length) throw new Error('No trades parsed');
+      if (!trades || !trades.length) throw new Error('لم يتم التعرف على صفوف الصفقات');
       var stats = parseTradesData(trades);
       _lastStats = stats;
       el('err-box').style.display = 'none';
@@ -529,10 +533,12 @@ function loadData() {
       render(stats);
     })
     .catch(function(e) {
-      console.warn('Sheets failed:', e.message, '— trying Supabase');
-      el('ds-indicator').textContent = 'SUPABASE';
-      el('ds-indicator').style.color = '#60a5fa';
-      loadSupabase();
+      console.warn('Google Sheets fetch error:', e.message);
+      el('err-box').textContent = '⚠️ تعذّر تحميل البيانات من Google Sheets — تأكد أن الشيت مشارك للعموم (View only)';
+      el('err-box').style.display = 'block';
+      el('ds-indicator').textContent = 'ERROR';
+      el('ds-indicator').style.color = 'var(--red)';
+      render(emptyData());
     });
 }
 
@@ -600,51 +606,7 @@ function mapSheetRows(rows) {
   return trades;
 }
 
-// ════════════════════════════════════════════════════════════════
-//  SUPABASE FALLBACK
-// ════════════════════════════════════════════════════════════════
-function loadSupabase() {
-  fetch(_SB_URL + '/rest/v1/trades?select=*&order=created_at.asc', {
-    headers: {
-      'apikey': _SB_KEY,
-      'Authorization': 'Bearer ' + _SB_KEY,
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    if (!Array.isArray(data)) throw new Error('Bad response');
-    var trades = data.map(function(t) {
-      return {
-        created_at  : t.created_at || '',
-        symbol      : (t.symbol||'').replace(/-USDT-SWAP$/,'').replace(/-USDT$/,''),
-        direction   : (t.direction||'').toUpperCase(),
-        entry_price : t.entry_price,
-        size        : t.size||0,
-        sl          : t.sl||0,
-        tp1         : t.tp1||0,
-        tp2         : t.tp2||0,
-        result      : (t.result||t.status||'').toUpperCase().trim(),
-        trade_type  : t.type||t.trade_type||'Scalp',
-        tp3         : t.tp3||0,
-        tp4         : t.tp4||0,
-        tp5         : t.tp5||0,
-        tp6         : t.tp6||0,
-        tp7         : t.tp7||0
-      };
-    });
-    var stats = parseTradesData(trades);
-    _lastStats = stats;
-    el('err-box').style.display = 'none';
-    render(stats);
-  })
-  .catch(function(err) {
-    console.warn('Supabase also failed:', err);
-    el('err-box').textContent = '⚠️ تعذّر الاتصال بمصادر البيانات — يتم المحاولة مجدداً';
-    el('err-box').style.display = 'block';
-    render(emptyData());
-  });
-}
+
 
 // ════════════════════════════════════════════════════════════════
 //  CORE PARSER — يحسب P&L لكل أنواع WIN بدقة كاملة
